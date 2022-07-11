@@ -18,6 +18,7 @@
 
   home.packages = [
     pkgs.fortune
+    pkgs.htop
   ];
 
   programs.emacs.enable = true;
