@@ -19,6 +19,7 @@
   home.packages = [
     pkgs.fortune
     pkgs.htop
+    pkgs.dotfiles
   ];
 
   programs.emacs.enable = true;
