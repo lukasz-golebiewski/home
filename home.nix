@@ -23,10 +23,10 @@ in {
   # changes in each release.
   home.stateVersion = "22.05";
 
-  home.packages = [
-    pkgs.fortune
-    pkgs.htop
-    pkgs.dotfiles
+  home.packages = with pkgs; [
+    dotfiles
+    fortune
+    htop
   ];
 
   services.emacs.enable = true;
