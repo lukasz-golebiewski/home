@@ -1,6 +1,13 @@
 { config, pkgs, ... }:
 
-{
+let
+  emacs-overlay = import (builtins.fetchTarball {
+    url =
+      "https://github.com/nix-community/emacs-overlay/archive/master.tar.gz";
+  });
+in {
+  nixpkgs.overlays = [ emacs-overlay ];
+
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.username = "lukasz";
@@ -22,7 +29,21 @@
     pkgs.dotfiles
   ];
 
+  services.emacs.enable = true;
   programs.emacs.enable = true;
+  programs.emacs.extraPackages = epkgs: [
+    epkgs.magit
+  ];
+  home.file = {
+    ".emacs.d" = {
+      source = ./emacs.d;
+      recursive = true;
+    };
+  };
+
+  # programs.emacs.extraConfig = ''
+          # (setq standard-indent 2)
+        # '';
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
