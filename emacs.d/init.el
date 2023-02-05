@@ -57,7 +57,7 @@
 
 (setq debug-on-error t)
 
-(load "~/config/init-utils.el")
+(load "~/.emacs.d/config/init-utils.el")
 
 ;;; used packages:
 (use-package direnv
@@ -239,14 +239,14 @@
   :pin melpa
 )
 
-(load "~/config/init-evil.el")
-(load "~/config/init-org.el")
-(load "~/config/init-scala.el")
-(load "~/config/init-haskell.el")
-(load "~/config/init-rust.el")
+(load "~/.emacs.d/config/init-evil.el")
+(load "~/.emacs.d/config/init-org.el")
+(load "~/.emacs.d/config/init-scala.el")
+(load "~/.emacs.d/config/init-haskell.el")
+(load "~/.emacs.d/config/init-rust.el")
 
-(load "~/extras/ghcid.el")
-(load "~/extras/ghcid-nix.el")
+(load "~/.emacs.d/extras/ghcid.el")
+(load "~/.emacs.d/extras/ghcid-nix.el")
 
 (defun zoom-in () "Zooms all the frames in." (interactive) (zoom '+))
 (defun zoom-out () "Zooms all the frames out." (interactive) (zoom '-))
