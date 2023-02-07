@@ -113,7 +113,7 @@
 )
 (use-package plantuml-mode
   :init
-  (setq plantuml-default-exec-mode 'jar)
+  (setq plantuml-default-exec-mode 'executable)
   (setq plantuml-output-type "png")
 )
 ;;; global hooks:
@@ -242,9 +242,6 @@
       company-transformers '(company-sort-by-occurrence
                              company-sort-by-backend-importance))
 (defvar company-dabbrev-downcase nil)
-
-(setq plantuml-jar-path "~/bin/plantuml.jar")
-(setq plantuml-default-exec-mode 'jar)
 
 (provide 'emacs)
 (and window-system (server-start))

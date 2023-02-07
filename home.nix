@@ -27,6 +27,7 @@ in {
     dotfiles
     fortune
     htop
+    plantuml
     silver-searcher #ag
   ];
 
