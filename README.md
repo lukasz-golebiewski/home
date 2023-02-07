@@ -1,6 +1,6 @@
 ## Installation
 Clone the repo to `~/git/my/` and then:
-`$ ln -s ~/git/my/nixpkgs ~/.config/nixpkgs`
+`$ ln -s ~/git/my/home ~/.config/nixpkgs`
 
 Do:
 https://nix-community.github.io/home-manager/index.html#sec-install-standalone
