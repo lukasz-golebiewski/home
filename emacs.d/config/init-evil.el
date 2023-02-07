@@ -52,10 +52,6 @@
 )
 
 ;; folds text
-(use-package vimish-fold
-  :pin melpa
-)
-(vimish-fold-global-mode 1)
 (evil-leader/set-key
   "vf" 'vimish-fold
   "vd" 'vimish-fold-delete

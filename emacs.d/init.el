@@ -18,6 +18,7 @@
  sentence-end-double-space nil
  select-enable-clipboard t
  tags-revert-without-query t
+ vimish-fold-global-mode 1
 )
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
    (when (file-exists-p custom-file)
@@ -65,42 +66,21 @@
  (direnv-mode)
  :pin melpa-stable
 )
-(use-package smex)
-(use-package ace-window)
-(use-package ag)
-(use-package avy)
-(use-package bind-key)
-(use-package csv-mode)
-(use-package dockerfile-mode)
 (use-package dumb-jump
   :config (setq dumb-jump-force-searcher 'ag)
 )
-(use-package elmacro)
-(use-package eno)
-(use-package fireplace)
 (use-package flycheck
   :ensure t
   :init (global-flycheck-mode)
 )
 (use-package git-gutter-fringe+)
-
 (use-package git-timemachine)
-(use-package graphviz-dot-mode)
 (use-package helm
   :bind (
     ("C-x C-f" . helm-mini)
     ("C-x C-d" . helm-find-files)
   )
 )
-(use-package helm-ag)
-(use-package helm-projectile)
-(use-package helm-swoop)
-(use-package hydra)
-(use-package idris-mode)
-(use-package key-chord)
-(use-package nyan-mode)
-(use-package markdown-mode)
-(use-package monokai-theme)
 (use-package multiple-cursors
   :bind (
     ("C->" . mc/mark-next-like-this)
@@ -111,7 +91,6 @@
 (use-package nix-mode
   :mode "\\.nix\\'"
 )
-(use-package projectile)
 (use-package recentf
   :ensure t
   :init (recentf-mode +1)
@@ -119,14 +98,9 @@
       recentf-max-menu-items 15
   )
 )
-(use-package smartparens)
-(use-package suggest)
 (use-package undo-tree
   :init (setq undo-tree-auto-save-history nil)
 )
-(use-package vlf)
-(use-package which-key)
-(use-package yaml-mode)
 (use-package yasnippet
   :pin melpa
   :init
@@ -137,7 +111,6 @@
   :config
   (yas-global-mode 1)
 )
-(use-package zoom-window)
 (use-package plantuml-mode
   :init
   (setq plantuml-default-exec-mode 'jar)
@@ -245,8 +218,8 @@
 (load "~/.emacs.d/config/init-haskell.el")
 (load "~/.emacs.d/config/init-rust.el")
 
-(load "~/.emacs.d/extras/ghcid.el")
-(load "~/.emacs.d/extras/ghcid-nix.el")
+;; (load "~/.emacs.d/extras/ghcid.el")
+;; (load "~/.emacs.d/extras/ghcid-nix.el")
 
 (defun zoom-in () "Zooms all the frames in." (interactive) (zoom '+))
 (defun zoom-out () "Zooms all the frames out." (interactive) (zoom '-))
