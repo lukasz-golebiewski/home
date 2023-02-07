@@ -89,6 +89,47 @@ in {
     };
   };
 
+  programs.tmux.enable = true;
+  programs.tmux.plugins = with pkgs; [
+    tmuxPlugins.sensible
+    tmuxPlugins.resurrect
+    tmuxPlugins.yank
+    tmuxPlugins.copycat
+    {
+      plugin = tmuxPlugins.continuum;
+      extraConfig = "set -g @continuum-restore 'off'";
+    }
+  ];
+  programs.tmux.extraConfig = ''
+    set -g prefix ^a
+    set -g terminal-overrides 'xterm*:smcup@:rmcup@'
+    unbind %
+    #bind | split-window -h
+    #bind - split-window -v
+    bind N break-pane
+    # Set status bar
+    set -g status-bg black
+    set -g status-fg white
+    # Highlight active window
+    set-window-option -g window-status-current-style bg=blue
+
+    # Set window notifications
+    setw -g monitor-activity on
+    set -g visual-activity on
+
+    # Automatically set window title
+    setw -g automatic-rename
+
+    bind | split-window -h -c '#{pane_current_path}'  # Split panes horizontal
+    bind - split-window -v -c '#{pane_current_path}'  # Split panes vertically
+
+    # pane movement
+    bind-key j command-prompt -p "join pane from:"  "join-pane -s '%%'"
+    bind-key s command-prompt -p "send pane to:"  "join-pane -t '%%'"
+
+    set-window-option -g mode-keys vi
+  '';
+
   # programs.emacs.extraConfig = ''
           # (setq standard-indent 2)
         # '';
