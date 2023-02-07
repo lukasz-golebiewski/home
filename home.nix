@@ -27,6 +27,7 @@ in {
     dotfiles
     fortune
     htop
+    silver-searcher #ag
   ];
 
   services.emacs.enable = true;
