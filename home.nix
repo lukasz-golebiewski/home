@@ -3,7 +3,7 @@
 let
   emacs-overlay = import (builtins.fetchTarball {
     url =
-      "https://github.com/nix-community/emacs-overlay/archive/master.tar.gz";
+      "https://github.com/nix-community/emacs-overlay/archive/c1eb5198d74d4f3d3ca2522bf8e2a4d04f5688a9.tar.gz";
   });
 in {
   nixpkgs.overlays = [ emacs-overlay ];
