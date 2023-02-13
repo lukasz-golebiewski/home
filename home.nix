@@ -5,6 +5,10 @@ let
     url =
       "https://github.com/nix-community/emacs-overlay/archive/09ebba1.tar.gz";
   });
+  linux-packages =
+   if pkgs.system == "x86_64-linux" then with pkgs; [
+    kazam
+   ] else [];
 in {
   nixpkgs.overlays = [ emacs-overlay ];
 
@@ -22,15 +26,13 @@ in {
   # the Home Manager release notes for a list of state version
   # changes in each release.
   home.stateVersion = "22.11";
-
   home.packages = with pkgs; [
     dotfiles
     fortune
     htop
-    kazam
     plantuml
     silver-searcher #ag
-  ];
+  ] ++ linux-packages;
 
   # services.emacs.enable = true;
   programs.emacs.enable = true;
