@@ -45,6 +45,7 @@ in {
     epkgs.dockerfile-mode
     epkgs.dumb-jump
     epkgs.elmacro
+    epkgs.elm-mode
     epkgs.eno
     epkgs.evil
     epkgs.evil-collection
@@ -57,20 +58,30 @@ in {
     # epkgs.git-gutter-fringe
     # epkgs.git-timemachine
     epkgs.graphviz-dot-mode
+    epkgs.haskell-mode
     epkgs.helm
     epkgs.helm-ag
+    epkgs.helm-lsp
     epkgs.helm-projectile
     epkgs.helm-swoop
     epkgs.hydra
     epkgs.idris-mode
     epkgs.key-chord
+    epkgs.lsp-metals
+    epkgs.lsp-mode
+    epkgs.lsp-haskell
+    epkgs.lsp-ui
     epkgs.nyan-mode
     epkgs.magit
     epkgs.markdown-mode
     epkgs.monokai-theme
+    epkgs.multiple-cursors
     epkgs.nix-mode
     epkgs.plantuml-mode
     epkgs.projectile
+    epkgs.rust-mode
+    epkgs.sbt-mode
+    epkgs.scala-mode
     epkgs.smex
     epkgs.smartparens
     epkgs.suggest
