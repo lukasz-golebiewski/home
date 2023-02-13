@@ -32,7 +32,7 @@ in {
     silver-searcher #ag
   ];
 
-  services.emacs.enable = true;
+  # services.emacs.enable = true;
   programs.emacs.enable = true;
   programs.emacs.extraPackages = epkgs: [
     epkgs.ace-window
