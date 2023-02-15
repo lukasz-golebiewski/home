@@ -7,7 +7,8 @@ let
   });
   linux-packages =
    if pkgs.system == "x86_64-linux" then with pkgs; [
-    kazam
+     kazam
+     peek
    ] else [];
 in {
   nixpkgs.overlays = [ emacs-overlay ];
@@ -30,6 +31,7 @@ in {
     dotfiles
     fortune
     htop
+    openvpn
     plantuml
     silver-searcher #ag
   ] ++ linux-packages;
