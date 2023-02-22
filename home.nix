@@ -28,9 +28,12 @@ in {
   # changes in each release.
   home.stateVersion = "22.11";
   home.packages = with pkgs; [
+    gnugrep
+    direnv
     dotfiles
     fortune
     htop
+    nix-direnv
     openvpn
     plantuml
     silver-searcher #ag
