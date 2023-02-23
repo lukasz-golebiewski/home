@@ -114,8 +114,6 @@ in {
     enableAutosuggestions = true;
     enableCompletion = true;
     initExtra = ''
-      eval "$(fasd --init auto)"
-      eval "$(direnv hook zsh)"
     '';
     plugins = with pkgs; [
       {
@@ -136,12 +134,21 @@ in {
           sha256 = "6B8uoKJm3gWmufsnLJzLEdSm1tQasrs2fUmS0pDsdMw=";
         };
       }
+      {
+        name = "zsh-z";
+        src = pkgs.fetchFromGitHub {
+          owner = "agkozak";
+          repo = "zsh-z";
+          rev = "da8dee3";
+          sha256 = "MHb9Q7mwgWAs99vom6a2aODB40I9JTBaJnbvTYbMwiA=";
+        };
+      }
     ];
     oh-my-zsh = {
       enable = true;
       plugins = [
         "git"
-        "fasd"
+        "z"
       ];
       theme = "ys";
     };
