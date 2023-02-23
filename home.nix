@@ -115,6 +115,7 @@ in {
     enableAutosuggestions = true;
     enableCompletion = true;
     initExtra = ''
+      eval "$(direnv hook zsh)"
     '';
     plugins = with pkgs; [
       {
