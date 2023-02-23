@@ -117,6 +117,7 @@ in {
     enableCompletion = true;
     initExtra = ''
       eval "$(direnv hook zsh)"
+      prompt_nix_shell_setup
     '';
     shellAliases = {
       "du." = "du -d 1 -h";
@@ -150,6 +151,15 @@ in {
           repo = "zsh-z";
           rev = "da8dee3";
           sha256 = "MHb9Q7mwgWAs99vom6a2aODB40I9JTBaJnbvTYbMwiA=";
+        };
+      }
+      {
+        name = "nix-zsh-completions";
+        src = pkgs.fetchFromGitHub {
+          owner = "nix-community";
+          repo = "nix-zsh-completions";
+          rev = "6a1bfc0";
+          sha256 = "aXetjkl5nPuYHHyuX59ywXF+4Xg+PUCV6Y2u+g18gEk=";
         };
       }
     ];
