@@ -196,6 +196,18 @@ in {
     set-window-option -g mode-keys vi
   '';
 
+  programs.git = {
+    enable = true;
+    userEmail = "lukasz.golebiewski@gmail.com";
+    userName = "Łukasz Gołębiewski";
+    signing.key = "3A04B66138A452AD9190A989C4F0E4E500C5DA8B";
+    signing.signByDefault = true;
+    extraConfig = {
+      github = { user = "lukasz.golebiewski"; };
+      merge = { conflictstyle = "diff3"; };
+    };
+  };
+
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }
