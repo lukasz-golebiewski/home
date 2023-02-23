@@ -3,7 +3,7 @@
 let
   emacs-overlay = import (builtins.fetchTarball {
     url =
-      "https://github.com/nix-community/emacs-overlay/archive/09ebba1.tar.gz";
+      "https://github.com/nix-community/emacs-overlay/archive/3fc7717.tar.gz";
   });
   linux-packages =
    if pkgs.system == "x86_64-linux" then with pkgs; [
