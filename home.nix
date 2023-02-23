@@ -28,10 +28,11 @@ in {
   # changes in each release.
   home.stateVersion = "22.11";
   home.packages = with pkgs; [
-    gnugrep
+    cachix
     direnv
     dotfiles
     fortune
+    gnugrep
     htop
     nix-direnv
     openvpn
