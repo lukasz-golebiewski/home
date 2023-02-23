@@ -114,6 +114,8 @@ in {
     enableAutosuggestions = true;
     enableCompletion = true;
     initExtra = ''
+      eval "$(fasd --init auto)"
+      eval "$(direnv hook zsh)"
     '';
     plugins = with pkgs; [
       {
