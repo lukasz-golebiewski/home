@@ -108,6 +108,43 @@ in {
     };
   };
 
+  programs.zsh = {
+    enable = true;
+    autocd = true;
+    enableAutosuggestions = true;
+    enableCompletion = true;
+    initExtra = ''
+    '';
+    plugins = with pkgs; [
+      {
+        name = "you-should-use";
+        src = pkgs.fetchFromGitHub {
+          owner = "MichaelAquilina";
+          repo = "zsh-you-should-use";
+          rev = "1.7.3";
+          sha256 = "/uVFyplnlg9mETMi7myIndO6IG7Wr9M7xDFfY1pG5Lc=";
+        };
+      }
+      {
+        name = "history-search-multi-word";
+        src = pkgs.fetchFromGitHub {
+          owner = "zdharma-continuum";
+          repo = "history-search-multi-word";
+          rev = "458e75c";
+          sha256 = "6B8uoKJm3gWmufsnLJzLEdSm1tQasrs2fUmS0pDsdMw=";
+        };
+      }
+    ];
+    oh-my-zsh = {
+      enable = true;
+      plugins = [
+        "git"
+        "fasd"
+      ];
+      theme = "ys";
+    };
+  };
+
   programs.tmux.enable = true;
   programs.tmux.plugins = with pkgs; [
     tmuxPlugins.sensible
