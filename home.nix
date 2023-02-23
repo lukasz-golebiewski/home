@@ -117,6 +117,12 @@ in {
     initExtra = ''
       eval "$(direnv hook zsh)"
     '';
+    shellAliases = {
+      "du." = "du -d 1 -h";
+    };
+    localVariables = {
+      EDITOR = "emacsclient";
+    };
     plugins = with pkgs; [
       {
         name = "you-should-use";
