@@ -195,10 +195,6 @@ in {
     set-window-option -g mode-keys vi
   '';
 
-  # programs.emacs.extraConfig = ''
-          # (setq standard-indent 2)
-        # '';
-
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }
