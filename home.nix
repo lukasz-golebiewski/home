@@ -16,7 +16,8 @@ in {
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.username = "lukasz";
-  home.homeDirectory = if pkgs.system == "x86_64-linux" then "/home/lukasz" else "/Users/lukasz";
+  home.homeDirectory =
+    if pkgs.system == "x86_64-linux" then "/home/lukasz" else "/Users/lukasz";
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
