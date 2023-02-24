@@ -243,6 +243,11 @@
                              company-sort-by-backend-importance))
 (defvar company-dabbrev-downcase nil)
 
+(when (eq system-type 'darwin)
+  (require 'ls-lisp)
+  (setq ls-lisp-use-insert-directory-program nil)
+)
+
 (provide 'emacs)
 (and window-system (server-start))
 ;;; emacs ends here
