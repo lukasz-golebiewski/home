@@ -37,6 +37,7 @@ in {
     htop
     nix-direnv
     openvpn
+    pass
     plantuml
     silver-searcher #ag
   ] ++ linux-packages;
