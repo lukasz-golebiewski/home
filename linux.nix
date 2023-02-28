@@ -8,7 +8,7 @@
   home.homeDirectory = "/home/lukasz";
 
   home.packages = with pkgs; [
-     kazam
+     # kazam
      keybase-gui
      peek
    ];
