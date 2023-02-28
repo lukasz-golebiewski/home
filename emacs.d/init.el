@@ -137,6 +137,7 @@
 (nyan-mode 1)
 (yas-global-mode 1)
 (desktop-save-mode 1)
+(helm-projectile-on)
 
 ;; prompt only y or no
 (fset `yes-or-no-p `y-or-n-p)
