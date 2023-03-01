@@ -59,8 +59,8 @@ in {
     epkgs.evil-surround
     epkgs.fireplace
     epkgs.flycheck
-    # epkgs.git-gutter-fringe
-    # epkgs.git-timemachine
+    epkgs."git-gutter-fringe+"
+    epkgs.git-timemachine
     epkgs.graphviz-dot-mode
     epkgs.haskell-mode
     epkgs.helm
