@@ -34,6 +34,7 @@ in {
     pass
     plantuml
     silver-searcher #ag
+    tmate
   ];
 
   # services.emacs.enable = true;
