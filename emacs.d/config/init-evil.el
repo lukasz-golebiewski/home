@@ -38,7 +38,6 @@
   "gb" 'magit-blame
   "gf" 'magit-log-buffer-file ;; Shows history of the current file
   "gt" 'git-timemachine
-  "jd" 'dumb-jump-go-prompt
   "hc" 'haskell-cabal-visit-file
   "er" 'eval-region
 
@@ -49,6 +48,12 @@
   "oo" 'org-open-at-point
   "os" 'org-store-link
   "oi" 'org-insert-link
+
+  "dp" 'dumb-jump-go-prompt
+  "dj" 'dumb-jump-go
+  "dh" 'dumb-jump-back
+
+  "n" 'linum-mode
 )
 
 ;; folds text

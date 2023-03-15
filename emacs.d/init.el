@@ -191,9 +191,6 @@
 (key-chord-define-global "e]" 'projectile-replace-regexp)
 (key-chord-define-global "r[" 'replace-string)
 (key-chord-define-global "r]" 'projectile-replace)
-(key-chord-define-global "ln" 'linum-mode)
-(key-chord-define-global "dl" 'dumb-jump-go)
-(key-chord-define-global "dh" 'dumb-jump-back)
 
 (require 'eno)
 (key-chord-define-global "jk" 'eno-word-goto)
