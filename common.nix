@@ -39,6 +39,7 @@ in {
 
   # services.emacs.enable = true;
   programs.emacs.enable = true;
+  programs.emacs.package = pkgs.emacsGit;
   programs.emacs.extraPackages = epkgs: [
     epkgs.ace-window
     epkgs.ag
