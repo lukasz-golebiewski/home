@@ -25,10 +25,10 @@ in {
     cachix
     direnv
     dotfiles
-    ffmpeg_5
     fortune
     gnugrep
     htop
+    mplayer
     nix-direnv
     openvpn
     pass
