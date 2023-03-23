@@ -25,10 +25,10 @@ in {
     cachix
     direnv
     dotfiles
+    ffmpeg
     fortune
     gnugrep
     htop
-    mplayer
     nix-direnv
     openvpn
     pass
@@ -119,7 +119,7 @@ in {
     shellAliases = {
       "du." = "du -d 1 -h";
       # $1 = in, $2 = out - requires mplayer
-      "myencoder" = "mencoder $1 -ovc x264 -oac mp3lame -o $2";
+      "myencoder" = "f(){mencoder $1 -ovc x264 -oac mp3lame -o $2;}; f";
     };
     localVariables = {
       EDITOR = "emacsclient";
