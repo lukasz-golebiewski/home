@@ -118,6 +118,8 @@ in {
     '';
     shellAliases = {
       "du." = "du -d 1 -h";
+      # $1 = in, $2 = out - requires mplayer
+      "myencoder" = "mencoder $1 -ovc x264 -oac mp3lame -o $2";
     };
     localVariables = {
       EDITOR = "emacsclient";
