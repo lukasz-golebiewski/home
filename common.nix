@@ -5,6 +5,7 @@ let
     url =
       "https://github.com/nix-community/emacs-overlay/archive/4e0b09e.tar.gz";
   });
+  mplayer = pkgs.mplayer.override {x264Support = true;};
 in {
   nixpkgs.overlays = [ emacs-overlay ];
 
@@ -29,12 +30,14 @@ in {
     fortune
     gnugrep
     htop
+    mplayer
     nix-direnv
     openvpn
     pass
     plantuml
     silver-searcher #ag
     tmate
+    x264
   ];
 
   # services.emacs.enable = true;
