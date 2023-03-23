@@ -53,7 +53,7 @@
   "dj" 'dumb-jump-go
   "dh" 'dumb-jump-back
 
-  "n" 'linum-mode
+  "n" 'display-line-numbers-mode
 )
 
 ;; folds text
