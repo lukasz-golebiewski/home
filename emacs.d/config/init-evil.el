@@ -31,6 +31,7 @@
 (evil-leader/set-leader "<SPC>")
 (evil-leader/set-key
   "ff" 'find-file
+  "fg" 'find-grep
   "y" 'helm-show-kill-ring
   "u" 'undo-tree-visualize
   "b" 'switch-to-buffer

@@ -156,7 +156,6 @@
 (global-set-key (kbd "C-x C-m") 'magit-status)
 (global-set-key (kbd "C-x R") 'magit-ediff-resolve)
 (global-set-key (kbd "C-c /") 'toggle-comment-on-line)
-(global-set-key (kbd "C-c f g") 'find-grep)
 (global-set-key (kbd "C-c j") 'avy-goto-subword-1)
 (global-set-key (kbd "C-x o") 'ace-window)
 (global-set-key (kbd "C-c C-s m") 'ace-maximize-window)
