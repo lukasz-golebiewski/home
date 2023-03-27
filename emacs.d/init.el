@@ -64,7 +64,6 @@
 (use-package direnv
  :config
  (direnv-mode)
- :pin melpa-stable
 )
 (use-package dumb-jump
   :config (setq dumb-jump-force-searcher 'ag)
@@ -102,7 +101,6 @@
   :init (setq undo-tree-auto-save-history nil)
 )
 (use-package yasnippet
-  :pin melpa
   :init
   (setq yas-snippet-dirs
       '("~/snippets"
@@ -206,7 +204,6 @@
   (define-key company-active-map (kbd "C-n") 'company-select-next)
   (define-key company-active-map (kbd "C-p") 'company-select-previous)
   :bind ("C-<tab>" . 'company-complete-common-or-cycle)
-  :pin melpa
 )
 
 (load "~/.emacs.d/config/init-evil.el")
