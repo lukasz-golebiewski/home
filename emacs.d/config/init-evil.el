@@ -33,7 +33,7 @@
 
 (evil-leader/set-leader "<SPC>")
 (evil-leader/set-key
-  "ff" 'find-file
+  "ff" 'helm-projectile-find-file-dwim
   "fg" 'find-grep
   "y" 'helm-show-kill-ring
   "u" 'undo-tree-visualize
