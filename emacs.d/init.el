@@ -134,12 +134,13 @@
 (helm-mode 1)
 (nyan-mode 1)
 (yas-global-mode 1)
-(setq
- desktop-dirname "~"
- desktop-base-file-name ".emacs.desktop"
- desktop-files-not-to-save "\\(\\`/[^/:]*:\\|(ftp)\\'\\)"
+(use-package desktop
+  :init
+  (desktop-save-mode 1)
+  (setq desktop-dirname "~")
+  (setq desktop-base-file-name ".emacs.desktop")
+  (setq desktop-files-not-to-save "\\(\\`/[^/:]*:\\|(ftp)\\'\\)")
 )
-(desktop-save-mode 1)
 (helm-projectile-on)
 
 ;; prompt only y or no
