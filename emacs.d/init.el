@@ -5,6 +5,7 @@
 ;;; Code:
 (defvar show-paren-delay)
 (defvar use-package-always-ensure)
+(defvar package-archive-contents)
 (defvar tags-revert-without-query)
 
 (setq
@@ -19,6 +20,7 @@
  select-enable-clipboard t
  tags-revert-without-query t
  vimish-fold-global-mode 1
+ package-archive-contents t
 )
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
    (when (file-exists-p custom-file)
