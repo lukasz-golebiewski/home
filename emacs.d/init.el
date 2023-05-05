@@ -7,6 +7,7 @@
 (defvar use-package-always-ensure)
 (defvar package-archive-contents)
 (defvar tags-revert-without-query)
+(defvar vimish-fold-global-mode)
 
 (setq
  inhibit-startup-screen t
