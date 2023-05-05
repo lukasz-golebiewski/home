@@ -16,6 +16,7 @@
   ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
   (setq lsp-keymap-prefix "C-c l")
   (setq lsp-file-watch-threshold 2000)
+  (setq lsp-enable-on-type-formatting nil)
   :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
          ((haskell-mode elm-mode) . lsp-deferred)
          ;; if you want which-key integration
