@@ -23,13 +23,18 @@ in {
   # changes in each release.
   home.stateVersion = "22.11";
   home.packages = with pkgs; [
+    awscli2
     cachix
     direnv
     dotfiles
+    eksctl
     ffmpeg
     fortune
     gnugrep
     htop
+    jq
+    kubectl
+    kubernetes-helm
     mplayer
     nix-direnv
     openvpn
