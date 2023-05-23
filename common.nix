@@ -29,6 +29,7 @@ in {
     dotfiles
     eksctl
     ffmpeg
+    fluxcd
     fortune
     gnugrep
     htop
