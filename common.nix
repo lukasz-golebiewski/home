@@ -3,7 +3,7 @@
 let
   emacs-overlay = import (builtins.fetchTarball {
     url =
-      "https://github.com/nix-community/emacs-overlay/archive/4e0b09e.tar.gz";
+      "https://github.com/nix-community/emacs-overlay/archive/0e32016.tar.gz";
   });
   mplayer = pkgs.mplayer.override {x264Support = true;};
 in {
