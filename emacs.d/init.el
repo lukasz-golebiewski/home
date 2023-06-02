@@ -22,6 +22,8 @@
  tags-revert-without-query t
  vimish-fold-global-mode 1
  package-archive-contents t
+ global-auto-revert-mode t
+ auto-revert-use-notify nil
 )
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
    (when (file-exists-p custom-file)
@@ -40,23 +42,23 @@
 (global-unset-key (kbd "C-z"))
 
 ;; the package manager
-;; (require 'package)
-;; (setq
- ;; package-archives '(("elpa"         . "http://elpa.gnu.org/packages/")
-                    ;; ("org"          . "http://orgmode.org/elpa/")
-                    ;; ("melpa"        . "http://melpa.org/packages/")
-                    ;; ("melpa-stable" . "http://stable.melpa.org/packages/"))
- ;; package-archive-priorities '(("melpa-stable" . 1)
-                              ;; ("melpa"        . 2)
-                              ;; ("elpa"         . 3)
-                              ;; ("org"          . 4)
- ;; )
-;; )
+(require 'package)
+(setq
+ package-archives '(("elpa"         . "http://elpa.gnu.org/packages/")
+                    ("org"          . "http://orgmode.org/elpa/")
+                    ("melpa"        . "http://melpa.org/packages/")
+                    ("melpa-stable" . "http://stable.melpa.org/packages/"))
+ package-archive-priorities '(("melpa-stable" . 1)
+                              ("melpa"        . 2)
+                              ("elpa"         . 3)
+                              ("org"          . 4)
+ )
+)
 
-;; (package-initialize)
-;; (when (not package-archive-contents)
-  ;; (package-refresh-contents)
-  ;; (package-install 'use-package))
+(package-initialize)
+ (when (not package-archive-contents)
+   (package-refresh-contents)
+   (package-install 'use-package))
 (require 'use-package)
 
 (setq debug-on-error t)
@@ -64,10 +66,10 @@
 (load "~/.emacs.d/config/init-utils.el")
 
 ;;; used packages:
-(use-package direnv
- :config
- (direnv-mode)
-)
+;; (use-package direnv
+ ;; :config
+ ;; (direnv-mode)
+;; )
 (use-package dumb-jump
   :config (setq dumb-jump-force-searcher 'ag)
 )
