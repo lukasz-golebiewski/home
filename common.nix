@@ -31,6 +31,7 @@ in {
     ffmpeg
     fluxcd
     fortune
+    google-cloud-sdk
     gnugrep
     htop
     jq
