@@ -1,5 +1,7 @@
 { config, pkgs, ... }:
-{
+let
+  mplayer = pkgs.mplayer.override {x264Support = true;};
+in {
   imports = [
     ./common.nix
   ];
@@ -10,6 +12,7 @@
   home.packages = with pkgs; [
      # kazam
      keybase-gui
+     mplayer
      peek
    ];
 }

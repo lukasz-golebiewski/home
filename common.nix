@@ -5,7 +5,6 @@ let
     url =
       "https://github.com/nix-community/emacs-overlay/archive/0e32016.tar.gz";
   });
-  mplayer = pkgs.mplayer.override {x264Support = true;};
 in {
   nixpkgs.overlays = [ emacs-overlay ];
 
@@ -37,7 +36,6 @@ in {
     jq
     kubectl
     kubernetes-helm
-    mplayer
     nix-direnv
     openvpn
     pass
