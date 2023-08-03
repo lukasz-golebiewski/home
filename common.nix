@@ -47,7 +47,7 @@ in {
 
   # services.emacs.enable = true;
   programs.emacs.enable = true;
-  programs.emacs.package = pkgs.emacs;
+  programs.emacs.package = pkgs.emacs-unstable;
   programs.emacs.extraPackages = epkgs: [
     epkgs.ace-window
     epkgs.ag
