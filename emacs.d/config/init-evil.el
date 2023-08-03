@@ -48,6 +48,7 @@
   "lfr" 'lsp-find-references
   "lfd" 'lsp-find-definition
   "lrn" 'lsp-rename
+  "lca" 'helm-lsp-code-actions
 
   "oo" 'org-open-at-point
   "os" 'org-store-link
