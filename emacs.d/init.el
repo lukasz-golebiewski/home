@@ -141,7 +141,7 @@
 (yas-global-mode 1)
 (use-package desktop
   :init
-  (desktop-save-mode 1)
+  (desktop-save-mode 0)
   (setq desktop-dirname "~")
   (setq desktop-base-file-name ".emacs.desktop")
   (setq desktop-files-not-to-save "\\(\\`/[^/:]*:\\|(ftp)\\'\\)")
