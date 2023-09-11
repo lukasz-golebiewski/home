@@ -231,6 +231,7 @@ in {
       github = { user = "lukasz-golebiewski"; };
       merge = { conflictstyle = "diff3"; };
     };
+    ignores = ["*/tmp/*"];
   };
 
   programs.gpg.enable = true;
