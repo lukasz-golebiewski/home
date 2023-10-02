@@ -99,6 +99,7 @@ in {
     epkgs.smex
     epkgs.smartparens
     epkgs.suggest
+    epkgs.terraform-mode
     epkgs.undo-tree
     epkgs.use-package
     epkgs.vimish-fold
