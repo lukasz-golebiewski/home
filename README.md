@@ -5,6 +5,8 @@ Clone the repo to `~/git/my/` and then:
 Afterwards, in the repo root dir, create a `home.nix` link to the OS-specific config:
 `ln -s linux.nix home.nix`
 
+NOTE: Use the latest stable channel
+
 Do:
 https://nix-community.github.io/home-manager/index.html#sec-install-standalone
 
