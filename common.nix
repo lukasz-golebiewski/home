@@ -7,6 +7,7 @@ let
   });
 in {
   nixpkgs.overlays = [ emacs-overlay ];
+  nixpkgs.config.allowUnfree = true;
 
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
@@ -44,6 +45,18 @@ in {
     tmate
     x264
   ];
+
+  programs.vscode = {
+    enable = true;
+    extensions = with pkgs.vscode-extensions; [
+      dracula-theme.theme-dracula
+      vscodevim.vim
+      yzhang.markdown-all-in-one
+      kahole.magit
+      rust-lang.rust-analyzer
+      jnoortheen.nix-ide
+    ];
+  };
 
   # services.emacs.enable = true;
   programs.emacs.enable = true;
