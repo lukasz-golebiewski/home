@@ -1,6 +1,6 @@
 ## Installation
 Clone the repo to `~/git/my/` and then:
-`$ ln -s ~/git/my/home ~/.config/nixpkgs`
+`$ ln -s ~/git/my/home ~/.config/home-manager`
 
 Afterwards, in the repo root dir, create a `home.nix` link to the OS-specific config:
 `ln -s linux.nix home.nix`
