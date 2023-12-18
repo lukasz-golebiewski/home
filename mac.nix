@@ -7,7 +7,6 @@ in {
   ];
   home.homeDirectory = "/Users/lukasz";
   home.packages = with pkgs; [
-     mplayer
      ntfs3g
    ];
 }
