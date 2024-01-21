@@ -41,6 +41,7 @@ in {
     openvpn
     pass
     plantuml
+    signal-export
     silver-searcher #ag
     tmate
     vim
