@@ -14,5 +14,6 @@ in {
      # keybase-gui
      mplayer
      peek
+     signal-desktop
    ];
 }
