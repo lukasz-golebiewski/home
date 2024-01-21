@@ -43,6 +43,7 @@ in {
     plantuml
     silver-searcher #ag
     tmate
+    vim
     x264
   ];
 
