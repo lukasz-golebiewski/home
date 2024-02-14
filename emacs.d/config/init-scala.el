@@ -41,19 +41,12 @@
   ;;       (setq lsp-log-io nil)
   ;;       (setq lsp-completion-provider :capf)
   (setq lsp-prefer-flymake nil)
+  (setq lsp-keep-workspace-alive nil)
   (define-key lsp-mode-map (kbd "C-c C-l") lsp-command-map)
 )
 
 ;; Add metals backend for lsp-mode
-(use-package lsp-metals
-  :ensure t
-  :custom
-  ;; Metals claims to support range formatting by default but it supports range
-  ;; formatting of multiline strings only. You might want to disable it so that
-  ;; emacs can use indentation provided by scala-mode.
-  (lsp-metals-server-args '("-J-Dmetals.allow-multiline-string-formatting=off"))
-  :hook (scala-mode . lsp)
-)
+(use-package lsp-metals)
 
 ;; Enable nice rendering of documentation on hover
 ;;   Warning: on some systems this package can reduce your emacs responsiveness significally.
@@ -73,6 +66,8 @@
   :hook (scala-mode . company-mode)
   :config
   (setq lsp-completion-provider :capf))
+
+(use-package posframe)
 
 (use-package dap-mode
   :hook
