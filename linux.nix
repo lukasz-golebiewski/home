@@ -15,5 +15,6 @@ in {
      mplayer
      peek
      signal-desktop
+     vlc
    ];
 }
