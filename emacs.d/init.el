@@ -73,6 +73,8 @@
 (use-package dumb-jump
   :config (setq dumb-jump-force-searcher 'ag)
 )
+(add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
+
 (use-package flycheck
   :ensure t
   :init (global-flycheck-mode)
