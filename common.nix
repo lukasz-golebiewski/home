@@ -103,6 +103,7 @@ in {
     epkgs.hydra
     epkgs.idris-mode
     epkgs.key-chord
+    epkgs.kotlin-mode
     epkgs.lsp-metals
     epkgs.lsp-mode
     epkgs.lsp-haskell
