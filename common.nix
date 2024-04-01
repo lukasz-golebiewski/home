@@ -37,6 +37,7 @@ in {
     jq
     kubectl
     kubernetes-helm
+    metals
     nix-direnv
     openvpn
     pass
