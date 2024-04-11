@@ -124,6 +124,7 @@ in {
     epkgs.smartparens
     epkgs.suggest
     epkgs.terraform-mode
+    epkgs.typescript-mode
     epkgs.undo-tree
     epkgs.use-package
     epkgs.vimish-fold
