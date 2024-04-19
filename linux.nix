@@ -14,7 +14,7 @@ in {
      # keybase-gui
      mplayer
      peek
-     signal-desktop
+     # signal-desktop
      vlc
    ];
 }
