@@ -30,23 +30,6 @@
    (setq sbt:program-options '("-Dsbt.supershell=false"))
 )
 
-(use-package lsp-mode
-  ;; Optional - enable lsp-mode automatically in scala files
-  :hook  (scala-mode . lsp)
-         (lsp-mode . lsp-lens-mode)
-  :config
-  ;; Uncomment following section if you would like to tune lsp-mode performance according to
-  ;; https://emacs-lsp.github.io/lsp-mode/page/performance/
-  ;;       (setq gc-cons-threshold 100000000) ;; 100mb
-  ;;       (setq read-process-output-max (* 1024 1024)) ;; 1mb
-  ;;       (setq lsp-idle-delay 0.500)
-  ;;       (setq lsp-log-io nil)
-  ;;       (setq lsp-completion-provider :capf)
-  (setq lsp-prefer-flymake nil)
-  (setq lsp-keep-workspace-alive nil)
-  (define-key lsp-mode-map (kbd "C-c C-l") lsp-command-map)
-)
-
 ;; Add metals backend for lsp-mode
 (use-package lsp-metals)
 
