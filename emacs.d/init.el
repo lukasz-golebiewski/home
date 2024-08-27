@@ -241,11 +241,16 @@
 (load "~/.emacs.d/config/init-scala.el")
 (load "~/.emacs.d/config/init-haskell.el")
 (load "~/.emacs.d/config/init-rust.el")
+(load "~/.emacs.d/config/init-front.el")
+
 (use-package lsp-mode
   ;; Optional - enable lsp-mode automatically in scala files
   :hook ((scala-mode . lsp)
          (lsp-mode . lsp-lens-mode)
          (js-mode . lsp)
+         (typescript-mode . lsp)
+         (rjsx-mode . lsp) ;; For React's JSX
+         (js-jsx-mode . lsp)
         )
   :config
   ;; Uncomment following section if you would like to tune lsp-mode performance according to

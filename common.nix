@@ -39,12 +39,14 @@ in {
     kubernetes-helm
     metals
     nix-direnv
+    nodePackages.typescript-language-server
     openvpn
     pass
     plantuml
     signal-export
     silver-searcher #ag
     tmate
+    typescript
     vim
     x264
   ];
@@ -117,6 +119,7 @@ in {
     epkgs.nix-mode
     epkgs.plantuml-mode
     epkgs.projectile
+    epkgs.rjsx-mode
     epkgs.rust-mode
     epkgs.sbt-mode
     epkgs.scala-mode
@@ -129,6 +132,7 @@ in {
     epkgs.use-package
     epkgs.vimish-fold
     epkgs.vlf
+    epkgs.web-mode
     epkgs.which-key
     epkgs.yaml-mode
     epkgs.yasnippet
