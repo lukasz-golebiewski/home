@@ -43,6 +43,7 @@ in {
     openvpn
     pass
     plantuml
+    sbt-extras
     signal-export
     silver-searcher #ag
     tmate
