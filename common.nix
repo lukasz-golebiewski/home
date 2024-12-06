@@ -3,7 +3,7 @@
 let
   emacs-overlay = import (builtins.fetchTarball {
     url =
-      "https://github.com/nix-community/emacs-overlay/archive/d3342b2.tar.gz";
+      "https://github.com/nix-community/emacs-overlay/archive/7a58ace.tar.gz";
   });
 in {
   nixpkgs.overlays = [ emacs-overlay ];
@@ -104,7 +104,7 @@ in {
     epkgs.evil-surround
     epkgs.fireplace
     epkgs.flycheck
-    epkgs."git-gutter-fringe+"
+    epkgs.git-gutter-fringe
     epkgs.git-timemachine
     epkgs.graphviz-dot-mode
     epkgs.haskell-mode

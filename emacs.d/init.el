@@ -79,7 +79,7 @@
   :ensure t
   :init (global-flycheck-mode)
 )
-(use-package git-gutter-fringe+)
+(use-package git-gutter-fringe)
 (use-package git-timemachine)
 (use-package helm
   :bind (
@@ -144,7 +144,7 @@
 ;;; global modes:
 (electric-indent-mode 0)
 (ido-mode 1)
-(global-git-gutter+-mode +1)
+(global-git-gutter-mode +1)
 (show-paren-mode 1)
 (column-number-mode 1)
 (elmacro-mode 1)
