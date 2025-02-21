@@ -36,6 +36,7 @@ in {
     gnugrep
     htop
     jq
+    k9s
     kubectl
     kubernetes-helm
     metals
