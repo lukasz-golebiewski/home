@@ -3,7 +3,7 @@
 let
   emacs-overlay = import (builtins.fetchTarball {
     url =
-      "https://github.com/nix-community/emacs-overlay/archive/65eacdb.tar.gz";
+      "https://github.com/nix-community/emacs-overlay/archive/10f086f.tar.gz";
   });
 in {
   nixpkgs.overlays = [ emacs-overlay ];
@@ -21,7 +21,7 @@ in {
   # You can update Home Manager without changing this value. See
   # the Home Manager release notes for a list of state version
   # changes in each release.
-  home.stateVersion = "24.11";
+  home.stateVersion = "25.05";
   home.packages = with pkgs; [
     awscli2
     buf
@@ -93,6 +93,7 @@ in {
     epkgs.bind-key
     epkgs.company
     epkgs.csv-mode
+    epkgs.dap-mode
     epkgs.direnv
     epkgs.dockerfile-mode
     epkgs.dumb-jump
