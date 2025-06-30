@@ -290,6 +290,8 @@
                              company-sort-by-backend-importance))
 (defvar company-dabbrev-downcase nil)
 
+(defun helm-ff--in-backup-directory () nil)
+
 (when (eq system-type 'darwin)
   (require 'ls-lisp)
   (setq ls-lisp-use-insert-directory-program nil)
