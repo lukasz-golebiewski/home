@@ -174,6 +174,7 @@ in {
       "myencoder" = "f(){mencoder $1 -ovc x264 -oac mp3lame -o $2;}; f";
       "myffmpeg-old" = "f(){ffmpeg -i $1 -c:v libx264 -crf 23 $2;}; f";
       "myffmpeg" = "f(){ffmpeg -i $1 -c:v vp9 -crf 23 $2;}; f";
+      "k" = "kubectl";
     };
     localVariables = {
       EDITOR = "emacsclient";
