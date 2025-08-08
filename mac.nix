@@ -11,4 +11,9 @@ in {
      ntfs3g
      darwin.apple_sdk.frameworks.SystemConfiguration
    ];
+
+  programs.tmux.extraConfig = ''
+    set-option -g default-shell /bin/zsh
+    set-option -g default-command $SHELL
+  '';
 }
