@@ -71,25 +71,29 @@ in {
 
   programs.vscode = {
     enable = true;
-    extensions = with pkgs.vscode-extensions; [
-      dracula-theme.theme-dracula
-      vscodevim.vim
-      yzhang.markdown-all-in-one
-      kahole.magit
-      rust-lang.rust-analyzer
-      jnoortheen.nix-ide
-      scala-lang.scala
-      scalameta.metals
-    ];
-    userSettings = {
-      "vim.leader" = "<space>";
-      "vim.normalModeKeyBindingsNonRecursive" = [
-        {
-          before = ["<leader>" "l" "f" "d"];
-          commands = ["editor.action.revealDefinition"];
-        }
-      # Add more multi-key leader sequences here if needed
-      ];
+    profiles = {
+      default = {
+        extensions = with pkgs.vscode-extensions; [
+          dracula-theme.theme-dracula
+          vscodevim.vim
+          yzhang.markdown-all-in-one
+          kahole.magit
+          rust-lang.rust-analyzer
+          jnoortheen.nix-ide
+          scala-lang.scala
+          scalameta.metals
+        ];
+        userSettings = {
+          "vim.leader" = "<space>";
+          "vim.normalModeKeyBindingsNonRecursive" = [
+            {
+              before = ["<leader>" "l" "f" "d"];
+              commands = ["editor.action.revealDefinition"];
+            }
+          # Add more multi-key leader sequences here if needed
+          ];
+        };
+      };
     };
   };
 
