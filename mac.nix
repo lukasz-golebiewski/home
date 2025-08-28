@@ -10,6 +10,7 @@ in {
      libiconv
      ntfs3g
      darwin.apple_sdk.frameworks.SystemConfiguration
+     watch
    ];
 
   programs.tmux.extraConfig = ''
