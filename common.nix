@@ -178,7 +178,7 @@ in {
     autocd = true;
     autosuggestion.enable = true;
     enableCompletion = true;
-    initExtra = ''
+    initContent = ''
       eval "$(direnv hook zsh)"
       prompt_nix_shell_setup
     '';
