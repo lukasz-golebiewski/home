@@ -9,7 +9,6 @@ in {
   home.packages = with pkgs; [
      libiconv
      ntfs3g
-     darwin.apple_sdk.frameworks.SystemConfiguration
      watch
    ];
 
