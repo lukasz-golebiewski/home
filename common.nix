@@ -83,6 +83,7 @@ in {
           scala-lang.scala
           scalameta.metals
           github.copilot
+          ms-azuretools.vscode-docker
         ];
         userSettings = {
           "vim.leader" = "<space>";
