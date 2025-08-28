@@ -82,6 +82,7 @@ in {
           jnoortheen.nix-ide
           scala-lang.scala
           scalameta.metals
+          github.copilot
         ];
         userSettings = {
           "vim.leader" = "<space>";
