@@ -81,6 +81,16 @@ in {
       scala-lang.scala
       scalameta.metals
     ];
+    userSettings = {
+      "vim.leader" = "<space>";
+      "vim.normalModeKeyBindingsNonRecursive" = [
+        {
+          before = ["<leader>" "l" "f" "d"];
+          commands = ["editor.action.revealDefinition"];
+        }
+      # Add more multi-key leader sequences here if needed
+      ];
+    };
   };
 
   # services.emacs.enable = true;
