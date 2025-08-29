@@ -94,6 +94,10 @@ in {
             }
           # Add more multi-key leader sequences here if needed
           ];
+          "files.watcherExclude" = {
+            "**/.bloop" = true;
+            "**/.metals" = true;
+          };
         };
       };
     };
