@@ -84,6 +84,7 @@ in {
           scalameta.metals
           github.copilot
           ms-azuretools.vscode-docker
+          ms-kubernetes-tools.vscode-kubernetes-tools
         ];
         userSettings = {
           "vim.leader" = "<space>";
