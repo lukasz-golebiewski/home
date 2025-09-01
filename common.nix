@@ -42,7 +42,9 @@ in {
     kubectl
     kubernetes-helm
     metals
+    nil
     nix-direnv
+    nixpkgs-fmt
     nodePackages.typescript-language-server
     openvpn
     pass
@@ -96,6 +98,15 @@ in {
         ];
         userSettings = {
           "vim.leader" = "<space>";
+          "nix.enableLanguageServer" = true;
+          "nix.serverPath" = "nil";
+          "nix.serverSettings" = {
+            "nil" = {
+              "formatting" = {
+                "command" = ["nixpkgs-fmt"];
+              };
+            };
+          };
           "vim.normalModeKeyBindingsNonRecursive" = [
             {
               before = ["<leader>" "l" "f" "d"];
