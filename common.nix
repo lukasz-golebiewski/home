@@ -97,7 +97,6 @@ in {
         }
         ];
         userSettings = {
-          "vim.leader" = "<space>";
           "nix.enableLanguageServer" = true;
           "nix.serverPath" = "nil";
           "nix.serverSettings" = {
@@ -107,6 +106,7 @@ in {
               };
             };
           };
+          "vim.leader" = "<space>";
           "vim.normalModeKeyBindingsNonRecursive" = [
             {
               before = ["<leader>" "l" "f" "d"];
