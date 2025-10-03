@@ -12,6 +12,11 @@ in {
      watch
    ];
 
+  # Set TMPDIR correctly for macOS
+  home.sessionVariables = {
+    TMPDIR = "\${TMPDIR}";
+  };
+
   programs.tmux.extraConfig = ''
     set-option -g default-shell /bin/zsh
     set-option -g default-command $SHELL
