@@ -27,6 +27,7 @@ in {
   home.stateVersion = "25.05";
   home.packages = with pkgs; [
     awscli2
+    azure-cli
     buf
     cachix
     direnv
@@ -41,6 +42,7 @@ in {
     jq
     k9s
     kubectl
+    kubelogin
     kubernetes-helm
     metals
     nil
