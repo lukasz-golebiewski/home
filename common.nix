@@ -59,6 +59,7 @@ in {
     typescript
     vim
     x264
+    yt-dlp
   ];
 
   nix = {
