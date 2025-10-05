@@ -36,6 +36,7 @@ in {
     ffmpeg
     fluxcd
     fortune
+    gemini-cli
     google-cloud-sdk
     gnugrep
     htop
