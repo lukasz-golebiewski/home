@@ -61,6 +61,7 @@ in {
     vim
     x264
     yt-dlp
+    yq
   ];
 
   nix = {
