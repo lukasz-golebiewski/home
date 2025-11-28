@@ -99,6 +99,7 @@ in {
       "myffmpeg-old" = "f(){ffmpeg -i $1 -c:v libx264 -crf 23 $2;}; f";
       "myffmpeg" = "f(){ffmpeg -i $1 -c:v vp9 -crf 23 $2;}; f";
       "k" = "kubectl";
+      "youtube-dl" = "yt-dlt";
     };
     localVariables = {
       EDITOR = "emacsclient";
