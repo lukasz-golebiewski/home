@@ -56,6 +56,7 @@ in {
     sbt-extras
     signal-export
     silver-searcher #ag
+    tldr
     tmate
     typescript
     vim
