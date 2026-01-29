@@ -92,6 +92,7 @@ in {
     initContent = ''
       eval "$(direnv hook zsh)"
       prompt_nix_shell_setup
+      export PATH="$HOME/.local/bin:$PATH"
     '';
     shellAliases = {
       "du." = "du -d 1 -h";
