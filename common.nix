@@ -1,6 +1,10 @@
 { config, pkgs, ... }:
 
 let
+  pkgs-unstable = import <nixpkgs-unstable> {
+    inherit (pkgs) system;
+    config.allowUnfree = true;
+  };
 in {
   imports = [
     ./emacs.nix
@@ -50,6 +54,7 @@ in {
     nix-direnv
     nixpkgs-fmt
     nodePackages.typescript-language-server
+    pkgs-unstable.ollama
     openvpn
     pass
     plantuml
