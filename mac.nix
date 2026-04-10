@@ -23,6 +23,9 @@ in {
   '';
 
   programs.zsh = {
+    shellAliases = {
+      "flushdns" = "sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder";
+    };
     initContent = ''
       # Source the Nix profile for proper environment
       if [ -e /nix/var/nix/profiles/default/etc/profile.d/nix.sh ]; then
