@@ -245,7 +245,7 @@
 
 (use-package lsp-mode
   ;; Optional - enable lsp-mode automatically in scala files
-  :hook ((scala-mode . lsp)
+  :hook (;;(scala-mode . lsp)
          (lsp-mode . lsp-lens-mode)
          (js-mode . lsp)
          (typescript-mode . lsp)
