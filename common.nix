@@ -29,7 +29,6 @@
     azure-cli
     buf
     cachix
-    direnv
     dotfiles
     eksctl
     ffmpeg
@@ -45,7 +44,6 @@
     kubernetes-helm
     metals
     nil
-    nix-direnv
     nixpkgs-fmt
     nodePackages.typescript-language-server
     openvpn
@@ -67,6 +65,11 @@
     gemini-cli
     ollama
   ]);
+
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+  };
 
   nix = {
     package = pkgs.nix;
@@ -93,7 +96,6 @@
     autosuggestion.enable = true;
     enableCompletion = true;
     initContent = ''
-      eval "$(direnv hook zsh)"
       prompt_nix_shell_setup
       export PATH="$HOME/.local/bin:$PATH"
     '';
