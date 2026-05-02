@@ -90,13 +90,17 @@
     };
   };
 
+  programs.starship = {
+    enable = true;
+    # Add any custom starship settings here if desired
+  };
+
   programs.zsh = {
     enable = true;
     autocd = true;
     autosuggestion.enable = true;
     enableCompletion = true;
     initContent = ''
-      prompt_nix_shell_setup
       export PATH="$HOME/.local/bin:$PATH"
     '';
     shellAliases = {
