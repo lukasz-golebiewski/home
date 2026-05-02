@@ -40,7 +40,6 @@ in {
     ffmpeg
     fluxcd
     fortune
-    #gemini-cli
     google-cloud-sdk
     gnugrep
     htop
@@ -69,6 +68,7 @@ in {
     yq
   ] ++ (with pkgs-unstable; [
     claude-code
+    gemini-cli
     ollama
   ]);
 
