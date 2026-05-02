@@ -1,10 +1,10 @@
 {
-  description = "Lukasz's Dynamic Home Manager Configuration";
+  description = "Lukasz's Multi-platform Home Manager Configuration";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    
+
     home-manager = {
       url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -18,12 +18,12 @@
 
   outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, emacs-overlay, ... }@inputs:
     let
-      # Detect current system architecture and OS
-      system = builtins.currentSystem;
-      
+      supportedSystems = [ "aarch64-darwin" "x86_64-linux" ];
+      forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
+
       # Helper to build the configuration
-      mkHome = sys: home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.${sys};
+      mkHome = system: home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.${system};
         extraSpecialArgs = {
           inherit inputs;
           pkgs-unstable = import nixpkgs-unstable {
@@ -33,17 +33,16 @@
         };
         modules = [
           ./common.nix
-          # Dynamic OS module selection
-          (if nixpkgs.lib.hasInfix "darwin" sys then ./mac.nix else ./linux.nix)
+          # Dynamic OS module selection based on the system string
+          (if nixpkgs.lib.hasInfix "darwin" system then ./mac.nix else ./linux.nix)
         ];
       };
     in {
+      packages = forAllSystems (system: {
+        homeConfigurations.lukasz = mkHome system;
+      });
+
       homeConfigurations = {
-        # This will work on any machine with username 'lukasz' 
-        # because 'system' is detected at runtime.
-        "lukasz" = mkHome system;
-        
-        # Explicit versions just in case you need to build for another target
         "lukasz@mac" = mkHome "aarch64-darwin";
         "lukasz@linux" = mkHome "x86_64-linux";
       };
