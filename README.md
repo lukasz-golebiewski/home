@@ -1,26 +1,52 @@
+# Lukasz's Home Manager Configuration
+
+This directory contains my [Home Manager](https://github.com/nix-community/home-manager) configuration, now modernized using Nix Flakes.
+
 ## Installation
-Clone the repo to `~/git/my/` and then:
-`$ ln -s ~/git/my/home ~/.config/home-manager`
 
-Afterwards, in the repo root dir, create a `home.nix` link to the OS-specific config:
-`ln -s linux.nix home.nix`
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/lukasz-golebiewski/git.git ~/git
+    cd ~/git/my/home
+    ```
 
-NOTE: Use the latest stable channel, e.g. on a mac use:
-```
-nix-channel --add https://github.com/nix-community/home-manager/archive/release-25.05.tar.gz home-manager
-nix-channel --add https://nixos.org/channels/nixpkgs-25.05-darwin nixpkgs
+2.  **Apply the configuration:**
+    Use the configuration specific to your system:
+    
+    **For macOS:**
+    ```bash
+    nix run home-manager/release-25.05 -- switch --flake .#lukasz@mac
+    ```
+    
+    **For Linux:**
+    ```bash
+    nix run home-manager/release-25.05 -- switch --flake .#lukasz@linux
+    ```
+
+## Usage
+
+After the initial installation, you can use the `home-manager` command directly:
+
+```bash
+# Switch to updated configuration
+home-manager switch --flake .#lukasz@mac
+
+# Build without applying
+home-manager build --flake .#lukasz@mac
 ```
 
-Do:
-https://nix-community.github.io/home-manager/index.html#sec-install-standalone
+### Structure
 
-## Usage:
-https://nix-community.github.io/home-manager/index.html#ch-usage
+- `flake.nix`: Entry point and dependency management (pins nixpkgs and overlays).
+- `common.nix`: Shared packages and configuration (Zsh, Tmux, Git, etc.).
+- `mac.nix` / `linux.nix`: OS-specific packages and settings.
+- `emacs.nix`: Emacs configuration with `emacs-overlay`.
+- `vscode.nix`: VS Code profiles and extensions.
+- `emacs.d/`: Emacs initialization files (linked to `~/.emacs.d`).
 
-```
-home-manager build
-```
-Switch to a new configuration after modifying home.nix
-```
-home-manager switch
+## Maintenance
+
+To update dependencies (pins):
+```bash
+nix flake update
 ```
