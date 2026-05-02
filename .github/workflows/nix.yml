@@ -29,5 +29,8 @@ jobs:
       - name: Check Flake
         run: nix flake check
 
-      - name: Build Linux Configuration
-        run: nix build .#default --no-link
+      - name: Install Home Manager
+        run: nix profile install .#home-manager
+
+      - name: Build with Home Manager
+        run: home-manager build

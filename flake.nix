@@ -47,12 +47,18 @@
         # This is the "magic" entry for zero-argument home-manager commands
         "lukasz" = allConfigs."${currentSystem}" or allConfigs."aarch64-darwin";
         
+        # GitHub Actions runner
+        "runner" = allConfigs."x86_64-linux";
+
         # Friendly aliases
         "lukasz@mac"   = allConfigs."aarch64-darwin";
         "lukasz@linux" = allConfigs."x86_64-linux";
       };
 
       packages = nixpkgs.lib.genAttrs supportedSystems (system: {
+        # Expose home-manager CLI for 'nix run'
+        home-manager = home-manager.packages.${system}.home-manager;
+        # Standard default build
         default = allConfigs."${system}".activationPackage;
       });
     };
