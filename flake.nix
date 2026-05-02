@@ -18,7 +18,7 @@
 
   outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, emacs-overlay, ... }@inputs:
     let
-      supportedSystems = [ "aarch64-darwin" "x86_64-linux" ];
+      supportedSystems = [ "aarch64-darwin" "x86_64-linux" "x86_64-darwin" "aarch64-linux" ];
       
       # Helper to build the configuration
       mkHome = system: home-manager.lib.homeManagerConfiguration {
@@ -32,25 +32,28 @@
         };
         modules = [
           ./common.nix
-          # Dynamic OS module selection based on the system string
+          # Dynamic OS module selection
           (if nixpkgs.lib.hasInfix "darwin" system then ./mac.nix else ./linux.nix)
         ];
       };
+
+      # Generate all configs in a separate let binding to avoid circular references
+      allConfigs = nixpkgs.lib.genAttrs supportedSystems (system: mkHome system);
+
+      # Detect current system for the 'lukasz' alias
+      currentSystem = builtins.currentSystem or "aarch64-darwin";
     in {
-      # home-manager looks for these at the top level
-      homeConfigurations = {
-        # Architecture-specific names
-        "lukasz@aarch64-darwin" = mkHome "aarch64-darwin";
-        "lukasz@x86_64-linux"   = mkHome "x86_64-linux";
+      homeConfigurations = allConfigs // {
+        # This is the "magic" entry for zero-argument home-manager commands
+        "lukasz" = allConfigs."${currentSystem}" or allConfigs."aarch64-darwin";
         
-        # We define 'lukasz' for BOTH architectures. 
-        # Home Manager will pick the one that matches the current system's architecture
-        # when it evaluates the flake.
-        "lukasz" = mkHome (if nixpkgs.legacyPackages ? "aarch64-darwin" then "aarch64-darwin" else "x86_64-linux");
+        # Friendly aliases
+        "lukasz@mac"   = allConfigs."aarch64-darwin";
+        "lukasz@linux" = allConfigs."x86_64-linux";
       };
 
       packages = nixpkgs.lib.genAttrs supportedSystems (system: {
-        default = self.homeConfigurations."lukasz@${system}".activationPackage;
+        default = allConfigs."${system}".activationPackage;
       });
     };
 }
