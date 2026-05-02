@@ -19,7 +19,6 @@
   outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, emacs-overlay, ... }@inputs:
     let
       supportedSystems = [ "aarch64-darwin" "x86_64-linux" ];
-      forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
 
       # Helper to build the configuration
       mkHome = system: home-manager.lib.homeManagerConfiguration {
@@ -38,13 +37,19 @@
         ];
       };
     in {
-      packages = forAllSystems (system: {
-        homeConfigurations.lukasz = mkHome system;
-      });
-
+      # home-manager looks for these at the top level
       homeConfigurations = {
-        "lukasz@mac" = mkHome "aarch64-darwin";
+        # Architecture-specific names that home-manager can auto-detect
+        "lukasz@aarch64-darwin" = mkHome "aarch64-darwin";
+        "lukasz@x86_64-linux"   = mkHome "x86_64-linux";
+
+        # Friendly aliases
+        "lukasz@mac"   = mkHome "aarch64-darwin";
         "lukasz@linux" = mkHome "x86_64-linux";
       };
+
+      packages = nixpkgs.lib.genAttrs supportedSystems (system: {
+        default = self.homeConfigurations."lukasz@${system}".activationPackage;
+      });
     };
 }

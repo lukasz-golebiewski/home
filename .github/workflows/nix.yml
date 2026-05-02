@@ -23,4 +23,4 @@ jobs:
         run: nix flake check
 
       - name: Build Linux Configuration
-        run: nix build .#homeConfigurations."lukasz@linux".activationPackage --no-link
+        run: nix build .#default --no-link
