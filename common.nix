@@ -1,11 +1,6 @@
-{ config, pkgs, ... }:
+{ config, pkgs, pkgs-unstable, ... }:
 
-let
-  pkgs-unstable = import <nixpkgs-unstable> {
-    inherit (pkgs) system;
-    config.allowUnfree = true;
-  };
-in {
+{
   imports = [
     ./emacs.nix
     ./vscode.nix
@@ -109,7 +104,7 @@ in {
       "myffmpeg" = "f(){ffmpeg -i $1 -c:v vp9 -crf 23 $2;}; f";
       "k" = "kubectl";
       "kns" = "k config view --minify --output 'jsonpath={..namespace}'";
-      "youtube-dl" = "yt-dlt";
+      "youtube-dl" = "yt-dlp";
     };
     localVariables = {
       EDITOR = "emacsclient";

@@ -2,9 +2,6 @@
 let
   mplayer = pkgs.mplayer.override {x264Support = true;};
 in {
-  imports = [
-    ./common.nix
-  ];
   # services.keybase.enable = true;
 
   home.homeDirectory = "/home/lukasz";

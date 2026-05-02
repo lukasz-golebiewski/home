@@ -1,11 +1,7 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
-let
-  emacs-overlay = import (builtins.fetchTarball {
-    url = "https://github.com/nix-community/emacs-overlay/archive/7bb042b.tar.gz";
-  });
-in {
-  nixpkgs.overlays = [ emacs-overlay ];
+{
+  nixpkgs.overlays = [ inputs.emacs-overlay.overlays.default ];
 
   # services.emacs.enable = true;
   programs.emacs = {
