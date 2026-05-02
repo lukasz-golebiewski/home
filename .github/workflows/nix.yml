@@ -1,0 +1,26 @@
+name: "Nix Verification"
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - master
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: cachix/install-nix-action@v27
+        with:
+          extra_nix_config: |
+            experimental-features = nix-command flakes
+
+      - name: Check Flake
+        run: nix flake check
+
+      - name: Build Linux Configuration
+        run: nix build .#homeConfigurations."lukasz@linux".activationPackage --no-link
