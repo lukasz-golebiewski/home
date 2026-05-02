@@ -54,7 +54,6 @@ in {
     nix-direnv
     nixpkgs-fmt
     nodePackages.typescript-language-server
-    pkgs-unstable.ollama
     openvpn
     pass
     plantuml
@@ -68,7 +67,10 @@ in {
     x264
     yt-dlp
     yq
-  ];
+  ] ++ (with pkgs-unstable; [
+    claude-code
+    ollama
+  ]);
 
   nix = {
     package = pkgs.nix;
