@@ -63,6 +63,7 @@
     yq
   ] ++ (with pkgs-unstable; [
     claude-code
+    claude-monitor
     gemini-cli
     ollama
   ]);
