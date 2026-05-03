@@ -165,9 +165,12 @@
     };
   };
 
+  programs.bat.enable = true;
+
   programs.fzf = {
     enable = true;
     enableZshIntegration = true;
+    defaultCommand = "rg --files --hidden --glob '!.git/*'";
   };
 
   programs.zoxide = {
