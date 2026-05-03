@@ -23,7 +23,7 @@
   # You can update Home Manager without changing this value. See
   # the Home Manager release notes for a list of state version
   # changes in each release.
-  home.stateVersion = "25.05";
+  home.stateVersion = "25.11";
   home.packages = with pkgs; [
     awscli2
     azure-cli
@@ -49,6 +49,7 @@
     openvpn
     pass
     plantuml
+    ripgrep
     sbt-extras
     signal-export
     silver-searcher #ag
@@ -207,14 +208,16 @@
 
   programs.git = {
     enable = true;
-    userEmail = "lukasz.golebiewski@gmail.com";
-    userName = "Łukasz Gołębiewski";
-    signing.key = "3A04B66138A452AD9190A989C4F0E4E500C5DA8B";
-    signing.signByDefault = true;
-    extraConfig = {
+    settings = {
+      user = {
+        email = "lukasz.golebiewski@gmail.com";
+        name = "Łukasz Gołębiewski";
+      };
       github = { user = "lukasz-golebiewski"; };
       merge = { conflictstyle = "diff3"; };
     };
+    signing.key = "3A04B66138A452AD9190A989C4F0E4E500C5DA8B";
+    signing.signByDefault = true;
     ignores = ["*/tmp/*"];
   };
 
