@@ -4,7 +4,11 @@ let
 in {
   home.activation = {
     checkAppManagementPermission = lib.mkForce (lib.hm.dag.entryAnywhere "");
-    #aliasHomeManagerApplications = lib.mkForce (lib.hm.dag.entryAnywhere "");
+    cleanupHomeManagerApps = lib.hm.dag.entryBefore ["copyApps"] ''
+      if [ -L "$HOME/Applications/Home Manager Apps" ]; then
+        $DRY_RUN_CMD rm "$HOME/Applications/Home Manager Apps"
+      fi
+    '';
   };
   home.homeDirectory = "/Users/lukasz";
   home.packages = with pkgs; [
