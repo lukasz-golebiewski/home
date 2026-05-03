@@ -208,14 +208,16 @@
 
   programs.git = {
     enable = true;
-    userEmail = "lukasz.golebiewski@gmail.com";
-    userName = "Łukasz Gołębiewski";
-    signing.key = "3A04B66138A452AD9190A989C4F0E4E500C5DA8B";
-    signing.signByDefault = true;
-    extraConfig = {
+    settings = {
+      user = {
+        email = "lukasz.golebiewski@gmail.com";
+        name = "Łukasz Gołębiewski";
+      };
       github = { user = "lukasz-golebiewski"; };
       merge = { conflictstyle = "diff3"; };
     };
+    signing.key = "3A04B66138A452AD9190A989C4F0E4E500C5DA8B";
+    signing.signByDefault = true;
     ignores = ["*/tmp/*"];
   };
 
