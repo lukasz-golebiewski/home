@@ -29,7 +29,6 @@
     azure-cli
     buf
     cachix
-    direnv
     dotfiles
     eksctl
     ffmpeg
@@ -45,7 +44,6 @@
     kubernetes-helm
     metals
     nil
-    nix-direnv
     nixpkgs-fmt
     nodePackages.typescript-language-server
     openvpn
@@ -68,6 +66,11 @@
     ollama
   ]);
 
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+  };
+
   nix = {
     package = pkgs.nix;
     settings = {
@@ -87,14 +90,17 @@
     };
   };
 
+  programs.starship = {
+    enable = true;
+    # Add any custom starship settings here if desired
+  };
+
   programs.zsh = {
     enable = true;
     autocd = true;
     autosuggestion.enable = true;
     enableCompletion = true;
     initContent = ''
-      eval "$(direnv hook zsh)"
-      prompt_nix_shell_setup
       export PATH="$HOME/.local/bin:$PATH"
     '';
     shellAliases = {
