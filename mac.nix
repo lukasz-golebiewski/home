@@ -1,7 +1,11 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 let
   mplayer = pkgs.mplayer.override {x264Support = true;};
 in {
+  home.activation = {
+    checkAppManagementPermission = lib.mkForce (lib.hm.dag.entryAnywhere "");
+    #aliasHomeManagerApplications = lib.mkForce (lib.hm.dag.entryAnywhere "");
+  };
   home.homeDirectory = "/Users/lukasz";
   home.packages = with pkgs; [
      libiconv

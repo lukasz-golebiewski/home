@@ -1,12 +1,12 @@
 { pkgs, inputs, ... }:
 
 {
-  nixpkgs.overlays = [ inputs.emacs-overlay.overlays.default ];
+  # nixpkgs.overlays = [ inputs.emacs-overlay.overlays.default ];
 
   # services.emacs.enable = true;
   programs.emacs = {
     enable = true;
-    package = pkgs.emacs-unstable;
+    package = pkgs.emacs;
     extraPackages = epkgs: [
       epkgs.ace-window
       epkgs.ag
@@ -34,10 +34,9 @@
       epkgs.graphviz-dot-mode
       epkgs.haskell-mode
       epkgs.helm
-      epkgs.helm-ag
+      epkgs.helm-rg
       epkgs.helm-lsp
       epkgs.helm-projectile
-      epkgs.helm-swoop
       epkgs.hydra
       epkgs.idris-mode
       epkgs.key-chord
