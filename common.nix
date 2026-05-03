@@ -165,6 +165,16 @@
     };
   };
 
+  programs.fzf = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
+  programs.zoxide = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
   programs.tmux.enable = true;
   programs.tmux.plugins = with pkgs; [
     tmuxPlugins.sensible
