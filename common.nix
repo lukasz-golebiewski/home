@@ -4,6 +4,7 @@
   imports = [
     ./emacs.nix
     ./vscode.nix
+    ./agents.nix
   ];
 
   nixpkgs.config.allowUnfree = true;
@@ -61,10 +62,7 @@
     yt-dlp
     yq
   ] ++ (with pkgs-unstable; [
-    claude-code
-    claude-monitor
-    gemini-cli
-    ollama
+    # add packages from unstable here
   ]);
 
   programs.direnv = {
@@ -236,17 +234,4 @@
 
   programs.gpg.enable = true;
 
-  home.file.".gemini/extensions/caveman" = {
-    source = pkgs.runCommand "caveman-fixed" { } ''
-      cp -r ${pkgs.fetchFromGitHub {
-        owner = "JuliusBrussee";
-        repo = "caveman";
-        rev = "main";
-        sha256 = "sha256-LlyBlFsKUHKzsOXEwENoVSsZHtKENVY4vFMRf08vzoU=";
-      }} $out
-      chmod -R +w $out
-      sed -i '/^---$/d' $out/commands/caveman-init.toml
-    '';
-    recursive = true;
-  };
 }
