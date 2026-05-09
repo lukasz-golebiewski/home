@@ -58,6 +58,11 @@ in
     recursive = true;
   };
 
+  home.file.".gemini/skills/cellar/SKILL.md".source = pkgs.fetchurl {
+    url = "https://raw.githubusercontent.com/VirtusLab/cellar/main/skills/cellar/SKILL.md";
+    sha256 = "0n2ish1rwr1rafansgj7dlg9annba2h336ds9cgs6hmacdhkq11z";
+  };
+
   home.file.".claude/plugins/known_marketplaces.json".text =
     let home = config.home.homeDirectory; in
     builtins.toJSON {
