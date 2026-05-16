@@ -42,6 +42,11 @@ let
       chmod +x $out/bin/cellar
     '';
   };
+
+  cellarSkill = pkgs.fetchurl {
+    url = "https://raw.githubusercontent.com/VirtusLab/cellar/a16116ef0db7e85649a48ca08626e257e3032d2b/skills/cellar/SKILL.md";
+    sha256 = "0sgrfl3jl8d8i0x8kw94q5njlzvj663kvz02qslxdbwc188ivsgc";
+  };
 in
 
 {
@@ -58,10 +63,8 @@ in
     recursive = true;
   };
 
-  home.file.".gemini/skills/cellar/SKILL.md".source = pkgs.fetchurl {
-    url = "https://raw.githubusercontent.com/VirtusLab/cellar/a16116ef0db7e85649a48ca08626e257e3032d2b/skills/cellar/SKILL.md";
-    sha256 = "0sgrfl3jl8d8i0x8kw94q5njlzvj663kvz02qslxdbwc188ivsgc";
-  };
+  home.file.".gemini/skills/cellar/SKILL.md".source = cellarSkill;
+  home.file.".claude/skills/cellar/SKILL.md".source = cellarSkill;
 
   home.file.".claude/plugins/known_marketplaces.json".text =
     let home = config.home.homeDirectory; in
