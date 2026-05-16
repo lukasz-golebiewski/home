@@ -7,8 +7,8 @@ let
     cp -r ${pkgs.fetchFromGitHub {
       owner = "JuliusBrussee";
       repo = "caveman";
-      rev = "main";
-      sha256 = "sha256-LlyBlFsKUHKzsOXEwENoVSsZHtKENVY4vFMRf08vzoU=";
+      rev = "63a91ecadbf4c4719a4602a5abb00883f9966034";
+      sha256 = "sha256-Jlfas2MPoQx3pOw+yKCta8kYlOEY27SP5NXJtSL+GGI=";
     }} $out
     chmod -R +w $out
     sed -i '/^---$/d' $out/commands/caveman-init.toml
