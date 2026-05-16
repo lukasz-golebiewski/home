@@ -156,6 +156,7 @@
     oh-my-zsh = {
       enable = true;
       plugins = [
+        "emacs"
         "git"
         "z"
       ];

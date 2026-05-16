@@ -7,8 +7,8 @@ let
     cp -r ${pkgs.fetchFromGitHub {
       owner = "JuliusBrussee";
       repo = "caveman";
-      rev = "main";
-      sha256 = "sha256-LlyBlFsKUHKzsOXEwENoVSsZHtKENVY4vFMRf08vzoU=";
+      rev = "63a91ecadbf4c4719a4602a5abb00883f9966034";
+      sha256 = "sha256-Jlfas2MPoQx3pOw+yKCta8kYlOEY27SP5NXJtSL+GGI=";
     }} $out
     chmod -R +w $out
     sed -i '/^---$/d' $out/commands/caveman-init.toml
@@ -42,6 +42,11 @@ let
       chmod +x $out/bin/cellar
     '';
   };
+
+  cellarSkill = pkgs.fetchurl {
+    url = "https://raw.githubusercontent.com/VirtusLab/cellar/a16116ef0db7e85649a48ca08626e257e3032d2b/skills/cellar/SKILL.md";
+    sha256 = "0sgrfl3jl8d8i0x8kw94q5njlzvj663kvz02qslxdbwc188ivsgc";
+  };
 in
 
 {
@@ -58,10 +63,8 @@ in
     recursive = true;
   };
 
-  home.file.".gemini/skills/cellar/SKILL.md".source = pkgs.fetchurl {
-    url = "https://raw.githubusercontent.com/VirtusLab/cellar/main/skills/cellar/SKILL.md";
-    sha256 = "0n2ish1rwr1rafansgj7dlg9annba2h336ds9cgs6hmacdhkq11z";
-  };
+  home.file.".gemini/skills/cellar/SKILL.md".source = cellarSkill;
+  home.file.".claude/skills/cellar/SKILL.md".source = cellarSkill;
 
   home.file.".claude/plugins/known_marketplaces.json".text =
     let home = config.home.homeDirectory; in
