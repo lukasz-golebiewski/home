@@ -59,8 +59,8 @@ in
   };
 
   home.file.".gemini/skills/cellar/SKILL.md".source = pkgs.fetchurl {
-    url = "https://raw.githubusercontent.com/VirtusLab/cellar/main/skills/cellar/SKILL.md";
-    sha256 = "0n2ish1rwr1rafansgj7dlg9annba2h336ds9cgs6hmacdhkq11z";
+    url = "https://raw.githubusercontent.com/VirtusLab/cellar/a16116ef0db7e85649a48ca08626e257e3032d2b/skills/cellar/SKILL.md";
+    sha256 = "0sgrfl3jl8d8i0x8kw94q5njlzvj663kvz02qslxdbwc188ivsgc";
   };
 
   home.file.".claude/plugins/known_marketplaces.json".text =
