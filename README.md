@@ -1,52 +1,39 @@
 # Lukasz's Home Manager Configuration
 
-This directory contains my [Home Manager](https://github.com/nix-community/home-manager) configuration, now modernized using Nix Flakes.
+Modern [Home Manager](https://github.com/nix-community/home-manager) setup using Nix Flakes.
 
-## Installation
+## Quick Start
 
-1.  **Clone the repository:**
-    ```bash
-    git clone https://github.com/lukasz-golebiewski/git.git ~/git
-    cd ~/git/my/home
-    ```
-
-2.  **Apply the configuration:**
-    Use the configuration specific to your system:
-    
-    **For macOS:**
-    ```bash
-    nix run home-manager/release-25.05 -- switch --flake .#lukasz@mac
-    ```
-    
-    **For Linux:**
-    ```bash
-    nix run home-manager/release-25.05 -- switch --flake .#lukasz@linux
-    ```
-
-## Usage
-
-After the initial installation, you can use the `home-manager` command directly:
-
+### Apply Changes
 ```bash
-# Switch to updated configuration
-home-manager switch --flake .#lukasz@mac
-
-# Build without applying
-home-manager build --flake .#lukasz@mac
+home-manager switch
 ```
 
-### Structure
+### Dry Run
+```bash
+home-manager build
+```
 
-- `flake.nix`: Entry point and dependency management (pins nixpkgs and overlays).
-- `common.nix`: Shared packages and configuration (Zsh, Tmux, Git, etc.).
-- `mac.nix` / `linux.nix`: OS-specific packages and settings.
-- `emacs.nix`: Emacs configuration with `emacs-overlay`.
-- `vscode.nix`: VS Code profiles and extensions.
-- `emacs.d/`: Emacs initialization files (linked to `~/.emacs.d`).
+## Structure
+
+- **`flake.nix`**: Dependency management and system outputs.
+- **`common.nix`**: Core packages, Zsh, Tmux, and Git configuration.
+- **`mac.nix` / `linux.nix`**: OS-specific settings.
+- **`emacs.nix` / `vscode.nix`**: Editor configurations.
+- **`emacs.d/`**: Source for `~/.emacs.d`.
+- **`AGENTS.md`**: Instruction manual for AI agents (Gemini/Claude).
 
 ## Maintenance
 
-To update dependencies (pins):
+Update flake inputs:
 ```bash
 nix flake update
 ```
+
+Format code:
+```bash
+nixpkgs-fmt *.nix
+```
+
+## AI Agents
+This repo contains `GEMINI.md`, `CLAUDE.md`, and `AGENTS.md` to provide context for AI coding assistants.
