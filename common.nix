@@ -46,6 +46,7 @@
     metals
     nil
     nixpkgs-fmt
+    nodejs_24
     nodePackages.typescript-language-server
     openvpn
     pass
