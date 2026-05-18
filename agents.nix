@@ -47,6 +47,11 @@ let
     url = "https://raw.githubusercontent.com/VirtusLab/cellar/a16116ef0db7e85649a48ca08626e257e3032d2b/skills/cellar/SKILL.md";
     sha256 = "0sgrfl3jl8d8i0x8kw94q5njlzvj663kvz02qslxdbwc188ivsgc";
   };
+
+  mcp-server-memory = pkgs.writeShellScriptBin "mcp-server-memory" ''
+    # Pin version to ensure reproducibility across machines and CI
+    exec ${pkgs.nodejs}/bin/npx -y @modelcontextprotocol/server-memory@2026.1.26 "$@"
+  '';
 in
 
 {
@@ -56,6 +61,7 @@ in
     gemini-cli
     ollama
     cellarBin
+    mcp-server-memory
   ];
 
   home.file.".gemini/extensions/caveman" = {
@@ -65,6 +71,17 @@ in
 
   home.file.".gemini/skills/cellar/SKILL.md".source = cellarSkill;
   home.file.".claude/skills/cellar/SKILL.md".source = cellarSkill;
+
+  home.file.".gemini/settings.json".text = builtins.toJSON {
+    mcpServers = {
+      memory = {
+        command = "${mcp-server-memory}/bin/mcp-server-memory";
+        env = {
+          MEMORY_FILE_PATH = "${config.home.homeDirectory}/.gemini/memory.json";
+        };
+      };
+    };
+  };
 
   home.file.".claude/plugins/known_marketplaces.json".text =
     let home = config.home.homeDirectory; in
