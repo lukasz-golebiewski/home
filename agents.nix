@@ -83,6 +83,7 @@ in
     };
   };
 
+  home.file.".claude/plugins/known_marketplaces.json".force = true;
   home.file.".claude/plugins/known_marketplaces.json".text =
     let home = config.home.homeDirectory; in
     builtins.toJSON {
