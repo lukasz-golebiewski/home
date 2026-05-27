@@ -231,7 +231,14 @@
     };
     signing.key = "3A04B66138A452AD9190A989C4F0E4E500C5DA8B";
     signing.signByDefault = true;
-    ignores = ["*/tmp/*"];
+    ignores = [
+      "*/tmp/*"
+      ".DS_Store"
+      ".direnv/"
+      ".idea/"
+      "*.swp"
+      ".claude/"
+    ];
   };
 
   programs.gpg.enable = true;
