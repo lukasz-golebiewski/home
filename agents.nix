@@ -72,7 +72,7 @@ in
   home.file.".gemini/skills/cellar/SKILL.md".source = cellarSkill;
   home.file.".claude/skills/cellar/SKILL.md".source = cellarSkill;
 
-  home.file.".gemini/settings.json".text = builtins.toJSON {
+  home.file.".gemini/system-settings.json".text = builtins.toJSON {
     mcpServers = {
       memory = {
         command = "${mcp-server-memory}/bin/mcp-server-memory";
@@ -81,6 +81,10 @@ in
         };
       };
     };
+  };
+
+  home.sessionVariables = {
+    GEMINI_CLI_SYSTEM_SETTINGS_PATH = "${config.home.homeDirectory}/.gemini/system-settings.json";
   };
 
   home.file.".claude/plugins/known_marketplaces.json".force = true;
