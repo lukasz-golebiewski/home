@@ -3,7 +3,8 @@
 {
   # nixpkgs.overlays = [ inputs.emacs-overlay.overlays.default ];
 
-  services.emacs.enable = true;
+  ## don't start emacs as a service, it causes issues with e.g. keybase
+  services.emacs.enable = false;
 
   programs.emacs = {
     enable = true;
