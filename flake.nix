@@ -32,7 +32,8 @@
           (if nixpkgs.lib.hasInfix "darwin" system then ./mac.nix else ./linux.nix)
         ];
       };
-    in {
+    in
+    {
       # The "magic" for zero-argument home-manager commands on any machine.
       # home-manager automatically searches legacyPackages.${system}.homeConfigurations.${username}
       legacyPackages = forAllSystems (system: {
@@ -44,7 +45,7 @@
 
       # Explicit configurations for manual override or documentation
       homeConfigurations = {
-        "lukasz@mac"   = mkHome "aarch64-darwin";
+        "lukasz@mac" = mkHome "aarch64-darwin";
         "lukasz@linux" = mkHome "x86_64-linux";
       };
 
