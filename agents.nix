@@ -56,9 +56,9 @@ in
 
 {
   home.packages = with pkgs-unstable; [
+    antigravity-cli
     claude-code
     claude-monitor
-    gemini-cli
     ollama
     cellarBin
     mcp-server-memory

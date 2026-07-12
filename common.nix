@@ -114,6 +114,7 @@
       "k" = "kubectl";
       "kns" = "k config view --minify --output 'jsonpath={..namespace}'";
       "youtube-dl" = "yt-dlp";
+      "antigravity" = "agy";
     };
     localVariables = {
       EDITOR = "emacsclient";
