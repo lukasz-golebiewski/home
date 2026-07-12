@@ -35,6 +35,7 @@
     ffmpeg
     fluxcd
     fortune
+    git-crypt
     git-remote-gcrypt
     google-cloud-sdk
     gnugrep
