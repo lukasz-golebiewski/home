@@ -36,7 +36,7 @@
     fluxcd
     fortune
     git-crypt
-    git-remote-gcrypt
+    #git-remote-gcrypt
     google-cloud-sdk
     gnugrep
     htop
