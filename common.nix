@@ -24,7 +24,7 @@
   # You can update Home Manager without changing this value. See
   # the Home Manager release notes for a list of state version
   # changes in each release.
-  home.stateVersion = "25.11";
+  home.stateVersion = "26.05";
   home.packages = with pkgs; [
     awscli2
     azure-cli
@@ -49,7 +49,7 @@
     nil
     nixpkgs-fmt
     nodejs_24
-    nodePackages.typescript-language-server
+    typescript-language-server
     openvpn
     pass
     plantuml
@@ -62,7 +62,6 @@
     typescript
     vim
     x264
-    yt-dlp
     yq
   ] ++ (with pkgs-unstable; [
     # add packages from unstable here
