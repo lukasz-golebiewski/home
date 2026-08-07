@@ -84,7 +84,7 @@ in
   };
 
   home.sessionVariables = {
-    GEMINI_CLI_SYSTEM_SETTINGS_PATH = "${config.home.homeDirectory}/.gemini/system-settings.json";
+    ANTIGRAVITY_CLI_SYSTEM_SETTINGS_PATH = "${config.home.homeDirectory}/.gemini/system-settings.json";
   };
 
   home.file.".claude/plugins/known_marketplaces.json".force = true;
