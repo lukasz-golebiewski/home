@@ -62,7 +62,6 @@
     typescript
     vim
     x264
-    yt-dlp
     yq
   ] ++ (with pkgs-unstable; [
     # add packages from unstable here

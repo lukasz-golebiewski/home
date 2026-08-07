@@ -13,5 +13,6 @@ in {
      peek
      # signal-desktop
      vlc
+     yt-dlp
    ];
 }
