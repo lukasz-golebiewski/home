@@ -56,7 +56,7 @@
       epkgs.plantuml-mode
       epkgs.projectile
       epkgs.rjsx-mode
-      epkgs.rust-mode
+      #epkgs.rust-mode
       epkgs.sbt-mode
       epkgs.scala-mode
       epkgs.smex
