@@ -5,7 +5,7 @@
 ;;; Code:
 
 (setq use-package-always-defer t
-      use-package-always-ensure t
+      use-package-always-ensure nil
       backup-directory-alist `((".*" . ,temporary-file-directory))
       auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
 
