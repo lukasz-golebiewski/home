@@ -6,7 +6,6 @@
 
 ;;; Code:
 (use-package evil
-  :ensure t
   :init
   (setq
    evil-want-keybinding nil
@@ -17,7 +16,6 @@
 (use-package evil-collection
   :after evil
   :after company
-  :ensure t
   :config
   (evil-collection-init)
 )
