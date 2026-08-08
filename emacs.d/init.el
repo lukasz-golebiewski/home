@@ -16,12 +16,11 @@
  column-number-mode t
  scroll-error-top-bottom t
  show-paren-delay 0.5
- use-package-always-ensure t
+ use-package-always-ensure nil
  sentence-end-double-space nil
  select-enable-clipboard t
  tags-revert-without-query t
  vimish-fold-global-mode 1
- package-archive-contents t
  global-auto-revert-mode t
  auto-revert-use-notify nil
 )
@@ -41,24 +40,6 @@
 ;; global keybindings
 (global-unset-key (kbd "C-z"))
 
-;; the package manager
-(require 'package)
-(setq
- package-archives '(("elpa"         . "http://elpa.gnu.org/packages/")
-                    ("org"          . "http://orgmode.org/elpa/")
-                    ("melpa"        . "http://melpa.org/packages/")
-                    ("melpa-stable" . "http://stable.melpa.org/packages/"))
- package-archive-priorities '(("melpa-stable" . 1)
-                              ("melpa"        . 2)
-                              ("elpa"         . 3)
-                              ("org"          . 4)
- )
-)
-
-(package-initialize)
- (when (not package-archive-contents)
-   (package-refresh-contents)
-   (package-install 'use-package))
 (require 'use-package)
 
 (setq debug-on-error t)
@@ -66,17 +47,12 @@
 (load "~/.emacs.d/config/init-utils.el")
 
 ;;; used packages:
-;; (use-package direnv
- ;; :config
- ;; (direnv-mode)
-;; )
 (use-package dumb-jump
   :config (setq dumb-jump-force-searcher 'ag)
 )
 (add-hook 'xref-backend-functions #'dumb-jump-xref-activate)
 
 (use-package flycheck
-  :ensure t
   :init (global-flycheck-mode)
 )
 (use-package git-gutter-fringe)
@@ -98,7 +74,6 @@
   :mode "\\.nix\\'"
 )
 (use-package recentf
-  :ensure t
   :init (recentf-mode +1)
   :config (setq recentf-max-saved-items 200
       recentf-max-menu-items 15
@@ -143,7 +118,6 @@
 
 ;;; global modes:
 (electric-indent-mode 0)
-(ido-mode 1)
 (global-git-gutter-mode +1)
 (show-paren-mode 1)
 (column-number-mode 1)
@@ -157,7 +131,6 @@
 (global-undo-tree-mode 1)
 (helm-mode 1)
 (nyan-mode 1)
-(yas-global-mode 1)
 (use-package desktop
   :init
   (desktop-save-mode 0)
@@ -173,10 +146,6 @@
 ;;; theme:
 (load-theme 'monokai t)
 
-(when (not package-archive-contents)
-  (package-refresh-contents))
-
-;;(auto-package-update-maybe)
 (require 'vlf-setup)
 (setq line-move-visual nil)
 
