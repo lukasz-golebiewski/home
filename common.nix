@@ -113,6 +113,8 @@
       "k" = "kubectl";
       "kns" = "k config view --minify --output 'jsonpath={..namespace}'";
       "youtube-dl" = "yt-dlp";
+      "antigravity" = "agy";
+      "nixfmt" = "nixpkgs-fmt *.nix";
     };
     localVariables = {
       EDITOR = "emacsclient";

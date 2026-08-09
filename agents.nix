@@ -16,7 +16,7 @@ let
 
   cellarVersion = "0.1.0-M7";
   cellarPlatforms = {
-    "x86_64-linux"  = { archive = "cellar-${cellarVersion}-linux-x86_64.tar.gz";  hash = "sha256-iQaZxMeE7Iu5vhaOFtOOZ5MCRBrE0O/DjtZUT6L6NpQ="; };
+    "x86_64-linux" = { archive = "cellar-${cellarVersion}-linux-x86_64.tar.gz"; hash = "sha256-iQaZxMeE7Iu5vhaOFtOOZ5MCRBrE0O/DjtZUT6L6NpQ="; };
     "aarch64-linux" = { archive = "cellar-${cellarVersion}-linux-aarch64.tar.gz"; hash = "sha256-XabTzGAnQOdxIW9GxkCmi/CMT/KQE9ZEV67HAMqGmmc="; };
     "x86_64-darwin" = { archive = "cellar-${cellarVersion}-macos-x86_64.tar.gz"; hash = "sha256-QmJJQHAVP/mlF7Er09lYbrN4YfKwXnznvwnOmIxhVbE="; };
     "aarch64-darwin" = { archive = "cellar-${cellarVersion}-macos-arm64.tar.gz"; hash = "sha256-nsVVyD28xubN5KoGKZgInWdXWaIM3zo7X+nR25t5AUE="; };
@@ -56,9 +56,9 @@ in
 
 {
   home.packages = with pkgs-unstable; [
+    antigravity-cli
     claude-code
     claude-monitor
-    gemini-cli
     ollama
     cellarBin
     mcp-server-memory
@@ -84,7 +84,7 @@ in
   };
 
   home.sessionVariables = {
-    GEMINI_CLI_SYSTEM_SETTINGS_PATH = "${config.home.homeDirectory}/.gemini/system-settings.json";
+    ANTIGRAVITY_CLI_SYSTEM_SETTINGS_PATH = "${config.home.homeDirectory}/.gemini/system-settings.json";
   };
 
   home.file.".claude/plugins/known_marketplaces.json".force = true;
