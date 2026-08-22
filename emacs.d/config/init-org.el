@@ -10,7 +10,7 @@
 (global-set-key "\C-co" 'org-open-at-point)
 (global-set-key "\C-ca" 'org-agenda)
 (global-set-key "\C-cc" 'org-capture)
-(global-set-key "\C-cb" 'org-iswitchb)
+(global-set-key "\C-cb" 'org-switchb)
 
 (setq org-directory "~/grive/org")
 (setq org-default-notes-file (concat org-directory "/notes.org"))

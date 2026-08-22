@@ -85,8 +85,7 @@
 (use-package yasnippet
   :init
   (setq yas-snippet-dirs
-      '("~/snippets"
-       )
+        (list (expand-file-name "snippets" user-emacs-directory)))
   )
   :config
   (yas-global-mode 1)

@@ -5,10 +5,9 @@
 ;;; Code:
 
 (use-package web-mode
-  :mode ("\\.js\\'" "\\.jsx\\'")
+  :mode ("\\.html?\\'" "\\.css\\'" "\\.vue\\'")
   :config
-  (setq web-mode-content-types-alist '(("jsx" . "\\.js[x]?\\'")))
-  (setq web-mode-enable-auto-quoting nil)) ;; Prevents automatic insertion of quotes
+  (setq web-mode-enable-auto-quoting nil))
 
 (use-package rjsx-mode
   :mode "\\.jsx?\\'")

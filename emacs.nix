@@ -54,6 +54,7 @@
       epkgs.multiple-cursors
       epkgs.nix-mode
       epkgs.plantuml-mode
+      epkgs.posframe
       epkgs.projectile
       epkgs.rjsx-mode
       #epkgs.rust-mode
