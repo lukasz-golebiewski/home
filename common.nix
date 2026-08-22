@@ -1,4 +1,4 @@
-{ pkgs, pkgs-unstable, ... }:
+{ pkgs, ... }:
 
 {
   imports = [
@@ -63,9 +63,7 @@
     vim
     x264
     yq
-  ] ++ (with pkgs-unstable; [
-    # add packages from unstable here
-  ]);
+  ];
 
   programs.direnv = {
     enable = true;

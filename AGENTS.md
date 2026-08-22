@@ -23,7 +23,8 @@ Modern Nix Flake + Home Manager setup. Modular for macOS/Linux.
 - **Switch**: `home-manager switch`
 - **Build**: `home-manager build`
 - **Update Pins**: `nix flake update`
-- **Format**: `nixpkgs-fmt *.nix`
+- **Format**: `nix fmt`
+- **Lint**: `nix flake check`
 
 ## Environment
 - **Shell**: Zsh + Oh My Zsh (plugins only) + Starship + zoxide.

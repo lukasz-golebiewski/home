@@ -30,9 +30,10 @@ Update flake inputs:
 nix flake update
 ```
 
-Format code:
+Format and lint:
 ```bash
-nixpkgs-fmt *.nix
+nix fmt
+nix flake check
 ```
 
 ## AI Agents

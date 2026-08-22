@@ -19,13 +19,13 @@ let
     "x86_64-darwin" = { archive = "cellar-${cellarVersion}-macos-x86_64.tar.gz"; hash = "sha256-QmJJQHAVP/mlF7Er09lYbrN4YfKwXnznvwnOmIxhVbE="; };
     "aarch64-darwin" = { archive = "cellar-${cellarVersion}-macos-arm64.tar.gz"; hash = "sha256-nsVVyD28xubN5KoGKZgInWdXWaIM3zo7X+nR25t5AUE="; };
   };
-  cellarMeta = cellarPlatforms.${pkgs.system};
+  cellarMeta = cellarPlatforms.${pkgs.stdenv.hostPlatform.system};
   cellarBin = pkgs.stdenv.mkDerivation {
     pname = "cellar";
     version = cellarVersion;
     src = pkgs.fetchurl {
       url = "https://github.com/VirtusLab/cellar/releases/download/v${cellarVersion}/${cellarMeta.archive}";
-      hash = cellarMeta.hash;
+      inherit (cellarMeta) hash;
     };
     sourceRoot = ".";
     nativeBuildInputs = lib.optionals pkgs.stdenv.hostPlatform.isLinux [

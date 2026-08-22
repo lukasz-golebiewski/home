@@ -61,5 +61,54 @@
         # Default build is the activation package
         default = self.legacyPackages.${system}.homeConfigurations.lukasz.activationPackage;
       });
+
+      formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixpkgs-fmt);
+
+      checks = forAllSystems (system:
+        let
+          pkgs = nixpkgs.legacyPackages.${system};
+          nixSrc = pkgs.lib.fileset.toSource {
+            root = ./.;
+            fileset = pkgs.lib.fileset.fileFilter (file: file.hasExt "nix") ./.;
+          };
+          # Keep in sync with .statix.toml
+          statixToml = pkgs.writeText "statix.toml" ''
+            disabled = ["repeated_keys"]
+          '';
+        in
+        {
+          formatting = pkgs.runCommand "formatting-check"
+            {
+              nativeBuildInputs = [ pkgs.nixpkgs-fmt ];
+            } ''
+            nixpkgs-fmt --check ${nixSrc}
+            touch $out
+          '';
+          statix = pkgs.runCommand "statix-check"
+            {
+              nativeBuildInputs = [ pkgs.statix ];
+            } ''
+            statix check -c ${statixToml} ${nixSrc}
+            touch $out
+          '';
+          deadnix = pkgs.runCommand "deadnix-check"
+            {
+              nativeBuildInputs = [ pkgs.deadnix ];
+            } ''
+            deadnix --fail ${nixSrc}
+            touch $out
+          '';
+        });
+
+      devShells = forAllSystems (system:
+        let pkgs = nixpkgs.legacyPackages.${system}; in {
+          default = pkgs.mkShell {
+            packages = [
+              pkgs.nixpkgs-fmt
+              pkgs.statix
+              pkgs.deadnix
+            ];
+          };
+        });
     };
 }
