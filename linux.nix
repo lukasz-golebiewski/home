@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 let
   mplayer = pkgs.mplayer.override { x264Support = true; };
 in

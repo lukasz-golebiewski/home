@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ lib, pkgs, ... }:
 {
   home.activation = {
     checkAppManagementPermission = lib.mkForce (lib.hm.dag.entryAnywhere "");
