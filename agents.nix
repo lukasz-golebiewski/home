@@ -1,8 +1,6 @@
 { pkgs, pkgs-unstable, lib, config, ... }:
 
 let
-  cavemanSha = "84cc3c14fa1e10182adaced856e003406ccd250d";
-  cavemanShort = builtins.substring 0 12 cavemanSha;
   cavemanSrc = pkgs.runCommand "caveman-fixed" { } ''
     cp -r ${pkgs.fetchFromGitHub {
       owner = "JuliusBrussee";
@@ -49,7 +47,7 @@ let
   };
 
   mcp-server-memory = pkgs.writeShellScriptBin "mcp-server-memory" ''
-    # Pin version to ensure reproducibility across machines and CI
+    # Version pin only; npx still fetches from the registry at runtime.
     exec ${pkgs.nodejs}/bin/npx -y @modelcontextprotocol/server-memory@2026.1.26 "$@"
   '';
 in
