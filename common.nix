@@ -106,20 +106,17 @@
     '';
     shellAliases = {
       "du." = "du -d 1 -h";
-      # $1 = in, $2 = out - requires mplayer
-      "myencoder" = "f(){mencoder $1 -ovc x264 -oac mp3lame -o $2;}; f";
       "myffmpeg-old" = "f(){ffmpeg -i $1 -c:v libx264 -crf 23 $2;}; f";
       "myffmpeg" = "f(){ffmpeg -i $1 -c:v vp9 -crf 23 $2;}; f";
       "k" = "kubectl";
       "kns" = "k config view --minify --output 'jsonpath={..namespace}'";
-      "youtube-dl" = "yt-dlp";
       "antigravity" = "agy";
       "nixfmt" = "nixpkgs-fmt *.nix";
     };
     localVariables = {
       EDITOR = "emacsclient";
     };
-    plugins = with pkgs; [
+    plugins = [
       {
         name = "you-should-use";
         src = pkgs.fetchFromGitHub {
@@ -139,15 +136,6 @@
         };
       }
       {
-        name = "zsh-z";
-        src = pkgs.fetchFromGitHub {
-          owner = "agkozak";
-          repo = "zsh-z";
-          rev = "da8dee3";
-          sha256 = "MHb9Q7mwgWAs99vom6a2aODB40I9JTBaJnbvTYbMwiA=";
-        };
-      }
-      {
         name = "nix-zsh-completions";
         src = pkgs.fetchFromGitHub {
           owner = "nix-community";
@@ -162,9 +150,9 @@
       plugins = [
         "emacs"
         "git"
-        "z"
       ];
-      theme = "ys";
+      # Prompt is Starship; an OMZ theme would fight it.
+      theme = "";
     };
   };
 

@@ -1,7 +1,4 @@
 { config, lib, pkgs, ... }:
-let
-  mplayer = pkgs.mplayer.override { x264Support = true; };
-in
 {
   home.activation = {
     checkAppManagementPermission = lib.mkForce (lib.hm.dag.entryAnywhere "");

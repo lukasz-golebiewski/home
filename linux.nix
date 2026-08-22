@@ -16,4 +16,10 @@ in
     vlc
     yt-dlp
   ];
+
+  programs.zsh.shellAliases = {
+    # $1 = in, $2 = out - requires mplayer/mencoder from this module
+    myencoder = "f(){mencoder $1 -ovc x264 -oac mp3lame -o $2;}; f";
+    youtube-dl = "yt-dlp";
+  };
 }
