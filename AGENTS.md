@@ -26,10 +26,10 @@ Modern Nix Flake + Home Manager setup. Modular for macOS/Linux.
 - **Format**: `nixpkgs-fmt *.nix`
 
 ## Environment
-- **Shell**: Zsh + Oh My Zsh (ys theme).
+- **Shell**: Zsh + Oh My Zsh (plugins only) + Starship + zoxide.
 - **Git**: GPG signed (Key: 3A04B66138A452AD9190A989C4F0E4E500C5DA8B).
 - **Editor**: Emacs (Evil) primary. VSCode secondary.
-- **Extension**: Caveman (GitHub: JuliusBrussee/caveman). Patched in `common.nix`.
+- **Extension**: Caveman (GitHub: JuliusBrussee/caveman). Patched in `agents.nix`.
 
 ## Workflow
 1. Edit module (`common.nix`, `mac.nix`, etc.).

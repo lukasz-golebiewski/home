@@ -36,4 +36,4 @@ nixpkgs-fmt *.nix
 ```
 
 ## AI Agents
-This repo contains `GEMINI.md`, `CLAUDE.md`, and `AGENTS.md` to provide context for AI coding assistants.
+This repo contains `GEMINI.md`, `CLAUDE.md`, `GROK.md`, and `AGENTS.md` to provide context for AI coding assistants.
