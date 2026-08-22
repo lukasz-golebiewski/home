@@ -10,7 +10,6 @@
           vscodevim.vim
           yzhang.markdown-all-in-one
           kahole.magit
-          #rust-lang.rust-analyzer
           jnoortheen.nix-ide
           scala-lang.scala
           scalameta.metals

@@ -204,7 +204,6 @@
 (load "~/.emacs.d/config/init-org.el")
 (load "~/.emacs.d/config/init-scala.el")
 (load "~/.emacs.d/config/init-haskell.el")
-;;(load "~/.emacs.d/config/init-rust.el")
 (load "~/.emacs.d/config/init-front.el")
 
 (use-package lsp-mode
@@ -228,9 +227,6 @@
   (setq lsp-keep-workspace-alive nil)
   (define-key lsp-mode-map (kbd "C-c C-l") lsp-command-map)
 )
-
-;; (load "~/.emacs.d/extras/ghcid.el")
-;; (load "~/.emacs.d/extras/ghcid-nix.el")
 
 (defun zoom-in () "Zooms all the frames in." (interactive) (zoom '+))
 (defun zoom-out () "Zooms all the frames out." (interactive) (zoom '-))
