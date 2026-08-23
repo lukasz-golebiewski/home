@@ -1,8 +1,6 @@
-{ pkgs, inputs, ... }:
+{ pkgs, ... }:
 
 {
-  # nixpkgs.overlays = [ inputs.emacs-overlay.overlays.default ];
-
   ## don't start emacs as a service, it causes issues with e.g. keybase
   services.emacs.enable = false;
 
@@ -54,9 +52,9 @@
       epkgs.multiple-cursors
       epkgs.nix-mode
       epkgs.plantuml-mode
+      epkgs.posframe
       epkgs.projectile
       epkgs.rjsx-mode
-      #epkgs.rust-mode
       epkgs.sbt-mode
       epkgs.scala-mode
       epkgs.smex

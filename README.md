@@ -30,10 +30,23 @@ Update flake inputs:
 nix flake update
 ```
 
-Format code:
+Format and lint (CI runs `nix flake check` on PRs and on `main`/`master`):
 ```bash
-nixpkgs-fmt *.nix
+nix fmt
+nix flake check --print-build-logs
+```
+
+`nix flake check` covers nixpkgs-fmt, statix, deadnix, and `elisp-byte-compile` (`emacs.d/**/*.el`). Syntax errors fail; warnings do not.
+
+Elisp only (installed Emacs; any system):
+```bash
+emacs --batch -Q -f batch-byte-compile emacs.d/init.el emacs.d/config/*.el
+```
+
+Same check through the flake, for the system you are on:
+```bash
+nix build --print-build-logs .#checks.$(nix eval --impure --raw --expr builtins.currentSystem).elisp-byte-compile
 ```
 
 ## AI Agents
-This repo contains `GEMINI.md`, `CLAUDE.md`, and `AGENTS.md` to provide context for AI coding assistants.
+This repo contains `GEMINI.md`, `CLAUDE.md`, `GROK.md`, and `AGENTS.md` to provide context for AI coding assistants.
