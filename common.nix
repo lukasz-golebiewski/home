@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 
 {
   imports = [
@@ -231,5 +231,23 @@
   };
 
   programs.gpg.enable = true;
+
+  programs.ssh = {
+    enable = true;
+    enableDefaultConfig = false;
+    settings."*" = {
+      AddKeysToAgent = "yes";
+      IdentityFile = "~/.ssh/id_rsa";
+    };
+  };
+
+  home.activation.sshDirPermissions = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    if [ -d "$HOME/.ssh" ]; then
+      $DRY_RUN_CMD chmod 700 "$HOME/.ssh"
+    fi
+    if [ -f "$HOME/.ssh/id_rsa" ]; then
+      $DRY_RUN_CMD chmod 600 "$HOME/.ssh/id_rsa"
+    fi
+  '';
 
 }
