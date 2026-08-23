@@ -71,6 +71,10 @@
             root = ./.;
             fileset = pkgs.lib.fileset.fileFilter (file: file.hasExt "nix") ./.;
           };
+          elispSrc = pkgs.lib.fileset.toSource {
+            root = ./emacs.d;
+            fileset = pkgs.lib.fileset.fileFilter (file: file.hasExt "el") ./emacs.d;
+          };
           # Keep in sync with .statix.toml
           statixToml = pkgs.writeText "statix.toml" ''
             disabled = ["repeated_keys"]
@@ -96,6 +100,28 @@
               nativeBuildInputs = [ pkgs.deadnix ];
             } ''
             deadnix --fail ${nixSrc}
+            touch $out
+          '';
+          # Emacs's own compiler: syntax errors fail the check, warnings do not.
+          # Uses the same package set as programs.emacs so `require` / use-package resolve.
+          elisp-byte-compile = pkgs.runCommand "elisp-byte-compile-check"
+            {
+              nativeBuildInputs = [ (mkHome system).config.programs.emacs.finalPackage ];
+            } ''
+            export HOME=$(mktemp -d)
+            files="$(find ${elispSrc} -name '*.el' -print)"
+            if [ -z "$files" ]; then
+              echo "no .el files found"
+              exit 1
+            fi
+            # Store paths are read-only; write .elc into $HOME.
+            emacs --batch -Q \
+              --eval '(setq byte-compile-dest-file-function
+                        (lambda (f) (expand-file-name
+                                     (concat (md5 f) ".elc")
+                                     (getenv "HOME"))))' \
+              -f batch-byte-compile \
+              $files
             touch $out
           '';
         });
