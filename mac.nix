@@ -16,7 +16,7 @@
   };
   home.homeDirectory = "/Users/lukasz";
 
-  # Apple OpenSSH only; Linux would reject this directive.
+  # Apple OpenSSH only. Portable/Nix OpenSSH skips it via IgnoreUnknown.
   programs.ssh.settings."*".UseKeychain = "yes";
 
   # Reload the default key from Keychain at login. Use Apple's ssh-add — Nix
