@@ -236,6 +236,9 @@
     enable = true;
     enableDefaultConfig = false;
     settings."*" = {
+      # Portable OpenSSH (Nix git) rejects Apple's UseKeychain; emit this
+      # first so that directive is ignored instead of aborting the client.
+      IgnoreUnknown = "UseKeychain";
       AddKeysToAgent = "yes";
       IdentityFile = "~/.ssh/id_rsa";
     };
