@@ -38,6 +38,7 @@
     libiconv
     ntfs3g
     watch
+    yt-dlp-light
   ];
 
   # Set TMPDIR correctly for macOS

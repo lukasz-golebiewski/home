@@ -62,7 +62,6 @@
     typescript
     vim
     x264
-    yt-dlp-light
     yq
   ];
 
