@@ -89,6 +89,12 @@
     };
   };
 
+  home.sessionVariables = {
+    # Empty alternate-editor starts a daemon if none is running.
+    EDITOR = "emacsclient --alternate-editor=";
+    VISUAL = "emacsclient --alternate-editor=";
+  };
+
   programs.starship = {
     enable = true;
     # Add any custom starship settings here if desired
@@ -110,9 +116,6 @@
       "kns" = "k config view --minify --output 'jsonpath={..namespace}'";
       "antigravity" = "agy";
       "nixfmt" = "nixpkgs-fmt *.nix";
-    };
-    localVariables = {
-      EDITOR = "emacsclient";
     };
     plugins = [
       {
