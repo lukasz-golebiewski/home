@@ -12,9 +12,9 @@
 (global-set-key "\C-cc" 'org-capture)
 (global-set-key "\C-cb" 'org-switchb)
 
-(setq org-directory "~/grive/org")
-(setq org-default-notes-file (concat org-directory "/notes.org"))
-(setq org-agenda-files '("~/grive/org/agenda"))
+(setq org-directory (expand-file-name "~/git/my/docs"))
+(setq org-default-notes-file (expand-file-name "notes/NOTES.org" org-directory))
+(setq org-agenda-files (list (expand-file-name "notes" org-directory)))
 (setq org-refile-targets '(
    (nil :maxlevel . 2)              ; refile to headings in the current buffer
    (org-agenda-files :maxlevel . 2) ; refile to any of these files
