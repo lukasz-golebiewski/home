@@ -2,8 +2,14 @@
   description = "Lukasz's Multi-platform Home Manager Configuration";
 
   nixConfig = {
-    extra-substituters = [ "https://nix-community.cachix.org" ];
-    extra-trusted-public-keys = [ "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=" ];
+    extra-substituters = [
+      "https://nix-community.cachix.org"
+      "https://lukasz-golebiewski-home.cachix.org"
+    ];
+    extra-trusted-public-keys = [
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      "lukasz-golebiewski-home.cachix.org-1:oroQLUpUfWrZjuodfgUchHYHITAZoZ15hbioIEyF6VY="
+    ];
   };
 
   inputs = {

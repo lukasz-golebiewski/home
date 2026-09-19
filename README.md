@@ -38,6 +38,21 @@ nix flake check --print-build-logs
 
 `nix flake check` covers nixpkgs-fmt, statix, deadnix, and `elisp-byte-compile` (`emacs.d/**/*.el`). Syntax errors fail; warnings do not.
 
+## CI binary cache
+
+GitHub runners are ephemeral: a successful build is not automatically available
+to `home-manager switch`. CI can publish every store path it builds (including
+Darwin Emacs) to a Cachix binary cache instead.
+
+The public `lukasz-golebiewski-home` cache is configured declaratively by Home
+Manager. CI only needs its **write** token in the GitHub Actions repository
+secret `CACHIX_AUTH_TOKEN`; local machines need no Cachix credentials or
+manual configuration.
+
+After the next CI run for the same `flake.lock`, `home-manager switch` will
+substitute matching paths from that cache. The workflow retains
+`nix-community` as a read-only upstream cache.
+
 Elisp only (installed Emacs; any system):
 ```bash
 emacs --batch -Q -f batch-byte-compile emacs.d/init.el emacs.d/config/*.el
