@@ -19,6 +19,8 @@ jobs:
     runs-on: ${{ matrix.os }}
     name: verify (${{ matrix.os }})
     timeout-minutes: 120
+    env:
+      CACHIX_AUTH_TOKEN: ${{ secrets.CACHIX_AUTH_TOKEN }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5
@@ -31,10 +33,20 @@ jobs:
             extra-substituters = https://nix-community.cachix.org
             extra-trusted-public-keys = nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=
 
-      - name: Setup Cachix
+      # With a write token, cachix-action installs a post-build hook: every
+      # path built by this job becomes available to local Nix clients.
+      # CI still verifies normally when the token is unavailable.
+      - name: Setup project binary cache
+        if: ${{ env.CACHIX_AUTH_TOKEN != '' }}
         uses: cachix/cachix-action@v17
         with:
-          name: nix-community
+          name: lukasz-golebiewski-home
+          authToken: ${{ env.CACHIX_AUTH_TOKEN }}
+          extraPullNames: nix-community
+
+      - name: Warn if binary cache publishing is disabled
+        if: ${{ env.CACHIX_AUTH_TOKEN == '' }}
+        run: echo "::warning title=Cachix publishing disabled::CACHIX_AUTH_TOKEN is unavailable; this run will not publish build outputs."
 
       - name: Check Flake
         run: nix flake check --print-build-logs
@@ -44,3 +56,15 @@ jobs:
 
       - name: Build with Home Manager
         run: home-manager build --flake '.#${{ matrix.flake_attr }}'
+
+      # The cache's configured upstreams filter already-cached paths. This
+      # explicit push makes authentication and publishing failures visible.
+      - name: Check binary cache publishing
+        id: cachix-publish
+        if: ${{ env.CACHIX_AUTH_TOKEN != '' }}
+        continue-on-error: true
+        run: cachix push lukasz-golebiewski-home ./result
+
+      - name: Warn if binary cache publishing failed
+        if: ${{ steps.cachix-publish.outcome == 'failure' }}
+        run: echo "::warning title=Cachix publishing failed::The Home Manager result was built but could not be uploaded to lukasz-golebiewski-home."
