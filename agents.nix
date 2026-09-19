@@ -57,6 +57,7 @@ in
     antigravity-cli
     claude-code
     claude-monitor
+    codex
     ollama
     cellarBin
     mcp-server-memory
