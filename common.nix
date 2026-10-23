@@ -58,7 +58,6 @@
     signal-export
     silver-searcher #ag
     tldr
-    tmate
     typescript
     vim
     x264
