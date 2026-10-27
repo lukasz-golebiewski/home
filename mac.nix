@@ -1,7 +1,4 @@
 { config, lib, pkgs, ... }:
-let
-  qnapi = (import ./qnapi.nix { inherit pkgs; });
-in
 {
   home.activation = {
     checkAppManagementPermission = lib.mkForce (lib.hm.dag.entryAnywhere "");
@@ -40,7 +37,6 @@ in
   home.packages = with pkgs; [
     libiconv
     ntfs3g
-    qnapi
     watch
     yt-dlp-light
   ];

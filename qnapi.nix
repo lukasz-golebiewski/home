@@ -34,6 +34,7 @@ pkgs.libsForQt5.callPackage
     , libmediainfo
     , p7zip
     , pkg-config
+    , zlib
     }:
     stdenv.mkDerivation {
       pname = "qnapi";
@@ -50,10 +51,13 @@ pkgs.libsForQt5.callPackage
       buildInputs = [
         qtbase
         libmediainfo
+        zlib
       ];
 
       # .pro pins INSTALL_PREFIX to /usr. -after wins over that assignment.
+      # link_pkgconfig lets libqnapi see libmediainfo headers on Linux.
       qmakeFlags = [
+        "CONFIG+=link_pkgconfig"
         "-after"
         "INSTALL_PREFIX=${placeholder "out"}"
       ];
@@ -79,7 +83,22 @@ pkgs.libsForQt5.callPackage
           install -m755 macx/qnapic $out/bin/qnapic
           ln -s $out/Applications/QNapi.app/Contents/MacOS/QNapi $out/bin/qnapi
         else
-          make install
+          install -m755 qnapi $out/bin/qnapi
+          install -m755 qnapic $out/bin/qnapic
+          mkdir -p \
+            $out/share/applications \
+            $out/share/man/man1 \
+            $out/share/man/it/man1 \
+            $out/share/man/pl/man1
+          cp doc/qnapi.desktop $out/share/applications/
+          cp doc/man/qnapi.1.gz $out/share/man/man1/
+          cp doc/man/it/qnapi.1.gz $out/share/man/it/man1/
+          cp doc/man/pl/qnapi.1.gz $out/share/man/pl/man1/
+          for size in 16 32 48 128 512; do
+            dest=$out/share/icons/hicolor/''${size}x''${size}/apps
+            mkdir -p "$dest"
+            cp gui/res/icons/''${size}x''${size}/apps/qnapi.png "$dest/"
+          done
         fi
         runHook postInstall
       '';
