@@ -1,5 +1,8 @@
 { lib, pkgs, ... }:
 
+let
+  qnapi = import ./qnapi.nix { inherit pkgs; };
+in
 {
   imports = [
     ./emacs.nix
@@ -53,6 +56,7 @@
     openvpn
     pass
     plantuml
+    qnapi
     ripgrep
     sbt-extras
     signal-export
