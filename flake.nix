@@ -28,7 +28,7 @@
       forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
 
       # Helper to build the configuration
-      mkHome = system: home-manager.lib.homeManagerConfiguration {
+      mkHome = system: extraModules: home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.${system};
         extraSpecialArgs = {
           inherit inputs;
@@ -41,7 +41,17 @@
           ./common.nix
           # Dynamic OS module selection based on the system string
           (if nixpkgs.lib.hasInfix "darwin" system then ./mac.nix else ./linux.nix)
-        ];
+        ] ++ extraModules;
+      };
+
+      # GitHub-hosted runners are user "runner". The real configuration pins
+      # /Users/lukasz and /home/lukasz, so CI activates this copy instead.
+      # vscode's activation runs `code`, which has no display on a runner.
+      ciModule = { username, homeDirectory }: { lib, ... }: {
+        home.username = lib.mkForce username;
+        home.homeDirectory = lib.mkForce homeDirectory;
+        programs.vscode.enable = lib.mkForce false;
+        news.display = "silent";
       };
     in
     {
@@ -49,15 +59,27 @@
       # home-manager automatically searches legacyPackages.${system}.homeConfigurations.${username}
       legacyPackages = forAllSystems (system: {
         homeConfigurations = {
-          lukasz = mkHome system;
-          runner = mkHome system; # For GitHub Actions
+          lukasz = mkHome system [ ];
+          runner = mkHome system [ ]; # For GitHub Actions
         };
       });
 
       # Explicit configurations for manual override or documentation
       homeConfigurations = {
-        "lukasz@mac" = mkHome "aarch64-darwin";
-        "lukasz@linux" = mkHome "x86_64-linux";
+        "lukasz@mac" = mkHome "aarch64-darwin" [ ];
+        "lukasz@linux" = mkHome "x86_64-linux" [ ];
+        "ci@mac" = mkHome "aarch64-darwin" [
+          (ciModule {
+            username = "runner";
+            homeDirectory = "/Users/runner";
+          })
+        ];
+        "ci@linux" = mkHome "x86_64-linux" [
+          (ciModule {
+            username = "runner";
+            homeDirectory = "/home/runner";
+          })
+        ];
       };
 
       # Standard packages output for CI/Nix tools
@@ -112,7 +134,7 @@
           # Uses the same package set as programs.emacs so `require` / use-package resolve.
           elisp-byte-compile = pkgs.runCommand "elisp-byte-compile-check"
             {
-              nativeBuildInputs = [ (mkHome system).config.programs.emacs.finalPackage ];
+              nativeBuildInputs = [ (mkHome system [ ]).config.programs.emacs.finalPackage ];
             } ''
             export HOME=$(mktemp -d)
             files="$(find ${elispSrc} -name '*.el' -print)"
