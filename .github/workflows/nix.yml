@@ -14,8 +14,10 @@ jobs:
         include:
           - os: ubuntu-latest
             flake_attr: lukasz@linux
+            ci_attr: ci@linux
           - os: macos-latest
             flake_attr: lukasz@mac
+            ci_attr: ci@mac
     runs-on: ${{ matrix.os }}
     name: verify (${{ matrix.os }})
     timeout-minutes: 120
@@ -51,11 +53,29 @@ jobs:
       - name: Check Flake
         run: nix flake check --print-build-logs
 
-      - name: Install Home Manager
-        run: nix profile install .#home-manager
-
+      # nix run keeps the Home Manager CLI out of the user profile.
+      # programs.home-manager.enable also installs that binary.
       - name: Build with Home Manager
-        run: home-manager build --flake '.#${{ matrix.flake_attr }}'
+        id: hm-build
+        run: |
+          set -eu
+          nix run -L .#home-manager -- build --flake '.#${{ matrix.flake_attr }}'
+          echo "result=$(readlink ./result)" >> "$GITHUB_OUTPUT"
+
+      # Same modules as the user configuration, with the runner's username
+      # and home directory. -b moves pre-existing runner dotfiles aside.
+      # Switch replaces ./result, so the cache step uses the build output.
+      #
+      # cachix-action installs cachix with nix-env at priority 5, and
+      # home.packages contains cachix too. A different priority lets
+      # both provide bin/cachix. The action is skipped without a token.
+      - name: Activate Home Manager
+        run: |
+          set -eu
+          if nix-env -q cachix | grep -q .; then
+            nix-env --set-flag priority 1 cachix
+          fi
+          nix run -L .#home-manager -- switch --flake '.#${{ matrix.ci_attr }}' -b ci-backup
 
       # The cache's configured upstreams filter already-cached paths. This
       # explicit push makes authentication and publishing failures visible.
@@ -63,7 +83,7 @@ jobs:
         id: cachix-publish
         if: ${{ env.CACHIX_AUTH_TOKEN != '' }}
         continue-on-error: true
-        run: cachix push lukasz-golebiewski-home ./result
+        run: cachix push lukasz-golebiewski-home "${{ steps.hm-build.outputs.result }}"
 
       - name: Warn if binary cache publishing failed
         if: ${{ steps.cachix-publish.outcome == 'failure' }}
