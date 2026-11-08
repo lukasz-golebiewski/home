@@ -57,6 +57,7 @@
   "dh" 'dumb-jump-back
 
   "n" 'display-line-numbers-mode
+  "t" 'toggle-truncate-lines
 )
 
 ;; folds text
