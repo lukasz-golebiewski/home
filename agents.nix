@@ -1,17 +1,6 @@
 { pkgs, pkgs-unstable, lib, config, ... }:
 
 let
-  cavemanSrc = pkgs.runCommand "caveman-fixed" { } ''
-    cp -r ${pkgs.fetchFromGitHub {
-      owner = "JuliusBrussee";
-      repo = "caveman";
-      rev = "63a91ecadbf4c4719a4602a5abb00883f9966034";
-      sha256 = "sha256-Jlfas2MPoQx3pOw+yKCta8kYlOEY27SP5NXJtSL+GGI=";
-    }} $out
-    chmod -R +w $out
-    sed -i '/^---$/d' $out/commands/caveman-init.toml
-  '';
-
   cellarVersion = "0.1.0-M7";
   cellarPlatforms = {
     "x86_64-linux" = { archive = "cellar-${cellarVersion}-linux-x86_64.tar.gz"; hash = "sha256-iQaZxMeE7Iu5vhaOFtOOZ5MCRBrE0O/DjtZUT6L6NpQ="; };
@@ -63,11 +52,6 @@ in
     mcp-server-memory
   ];
 
-  home.file.".gemini/extensions/caveman" = {
-    source = cavemanSrc;
-    recursive = true;
-  };
-
   home.file.".gemini/skills/cellar/SKILL.md".source = cellarSkill;
   home.file.".claude/skills/cellar/SKILL.md".source = cellarSkill;
 
@@ -94,11 +78,6 @@ in
         source = { source = "github"; repo = "anthropics/claude-plugins-official"; };
         installLocation = "${home}/.claude/plugins/marketplaces/claude-plugins-official";
         lastUpdated = "2026-05-02T16:16:07.748Z";
-      };
-      caveman = {
-        source = { source = "github"; repo = "JuliusBrussee/caveman"; };
-        installLocation = "${home}/.claude/plugins/marketplaces/caveman";
-        lastUpdated = "2026-04-28T08:09:57.974Z";
       };
       cellar = {
         source = { source = "github"; repo = "VirtusLab/cellar"; };
