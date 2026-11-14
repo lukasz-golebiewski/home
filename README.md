@@ -21,7 +21,7 @@ home-manager build
 - **`mac.nix` / `linux.nix`**: OS-specific settings.
 - **`emacs.nix` / `vscode.nix`**: Editor configurations.
 - **`emacs.d/`**: Source for `~/.emacs.d`.
-- **`AGENTS.md`**: Instruction manual for AI agents (Gemini/Claude).
+- **`AGENTS.md`**: Instruction manual for AI agents.
 
 ## Maintenance
 
