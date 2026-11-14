@@ -30,9 +30,10 @@ let
     '';
   };
 
+  # Same commit as the v0.1.0-M7 tag, so the skill matches the binary.
   cellarSkill = pkgs.fetchurl {
-    url = "https://raw.githubusercontent.com/VirtusLab/cellar/a16116ef0db7e85649a48ca08626e257e3032d2b/skills/cellar/SKILL.md";
-    sha256 = "0sgrfl3jl8d8i0x8kw94q5njlzvj663kvz02qslxdbwc188ivsgc";
+    url = "https://raw.githubusercontent.com/VirtusLab/cellar/9eb76cea01896173529a241494c3da3c6479e5a8/skills/cellar/SKILL.md";
+    sha256 = "1y7m19rvjs1akabx4qwqfpg3f6x2f5z3d5aaq5qdaf66r937sm49";
   };
 
   mcp-server-memory = pkgs.writeShellScriptBin "mcp-server-memory" ''
