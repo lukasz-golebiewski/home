@@ -1,12 +1,12 @@
 { pkgs, pkgs-unstable, lib, config, ... }:
 
 let
-  cellarVersion = "0.1.0-M7";
+  cellarVersion = "0.1.0-M14";
   cellarPlatforms = {
-    "x86_64-linux" = { archive = "cellar-${cellarVersion}-linux-x86_64.tar.gz"; hash = "sha256-iQaZxMeE7Iu5vhaOFtOOZ5MCRBrE0O/DjtZUT6L6NpQ="; };
-    "aarch64-linux" = { archive = "cellar-${cellarVersion}-linux-aarch64.tar.gz"; hash = "sha256-XabTzGAnQOdxIW9GxkCmi/CMT/KQE9ZEV67HAMqGmmc="; };
-    "x86_64-darwin" = { archive = "cellar-${cellarVersion}-macos-x86_64.tar.gz"; hash = "sha256-QmJJQHAVP/mlF7Er09lYbrN4YfKwXnznvwnOmIxhVbE="; };
-    "aarch64-darwin" = { archive = "cellar-${cellarVersion}-macos-arm64.tar.gz"; hash = "sha256-nsVVyD28xubN5KoGKZgInWdXWaIM3zo7X+nR25t5AUE="; };
+    "x86_64-linux" = { archive = "cellar-${cellarVersion}-linux-x86_64.tar.gz"; hash = "sha256-8w2ngwKo7h+TVwuynx6TVAmXJlcjJ/x97e4dxDr8sSw="; };
+    "aarch64-linux" = { archive = "cellar-${cellarVersion}-linux-aarch64.tar.gz"; hash = "sha256-UPO/4D+ojEwOL5swSdUEdPgxu/hEIIxfcVCHTKQT9+8="; };
+    "x86_64-darwin" = { archive = "cellar-${cellarVersion}-macos-x86_64.tar.gz"; hash = "sha256-WJ3F9nhHwza4bEaCjxlpwXdN9fAwcVeNXNltWaM6TUY="; };
+    "aarch64-darwin" = { archive = "cellar-${cellarVersion}-macos-arm64.tar.gz"; hash = "sha256-eHYaLzqRflStzL/03BgZZ9KbCz25LHBkmezSDaadTnM="; };
   };
   cellarMeta = cellarPlatforms.${pkgs.stdenv.hostPlatform.system};
   cellarBin = pkgs.stdenv.mkDerivation {
@@ -30,16 +30,16 @@ let
     '';
   };
 
-  # Same commit as the v0.1.0-M7 tag, so the skill matches the binary.
+  # Same commit as the v0.1.0-M14 tag, so the skill matches the binary.
   cellarSkill = pkgs.fetchurl {
-    url = "https://raw.githubusercontent.com/VirtusLab/cellar/9eb76cea01896173529a241494c3da3c6479e5a8/skills/cellar/SKILL.md";
-    sha256 = "1y7m19rvjs1akabx4qwqfpg3f6x2f5z3d5aaq5qdaf66r937sm49";
+    url = "https://raw.githubusercontent.com/VirtusLab/cellar/69540b26e0b06388573a9f36feb408126657dfe2/skills/cellar/SKILL.md";
+    sha256 = "sha256-TmyRtJ3JNA0fAzryzz+/AdGYdE0wXBRONjNZvntRr0c=";
   };
 
-  mcpMemoryVersion = "2026.1.26";
+  mcpMemoryVersion = "2.1.1";
   mcpMemoryTarball = pkgs.fetchurl {
     url = "https://registry.npmjs.org/@modelcontextprotocol/server-memory/-/server-memory-${mcpMemoryVersion}.tgz";
-    hash = "sha512-7F0hbaEB4lVqkYhNWmrC5jJjEWPCofgXd7OIk3h97HyvJL6aTAhlUNYaH8lCDxAzlK9sr2pLCkZEYI+m4HSOiA==";
+    hash = "sha512-MbjK6Pi+uGU3EwGk9HyCp/1zKwnuB/QMQ/wQOlswaLgHzIeeCuyVdWUTWg0hTGBk+n+3l5la5a4egbt8YuoVAg==";
   };
   mcpMemorySrc = pkgs.runCommand "mcp-server-memory-src" { } ''
     mkdir "$out"
@@ -51,7 +51,7 @@ let
     pname = "mcp-server-memory";
     version = mcpMemoryVersion;
     src = mcpMemorySrc;
-    npmDepsHash = "sha256-oJ+8lDh2hfmhHjAawv2l9pdm/BM60otPpMNjAVNJ52w=";
+    npmDepsHash = "sha256-xA3NIaUhxMNmGXo7iCVSJui79483Pkpj498+AEpnHuQ=";
     dontNpmBuild = true;
     nodejs = pkgs.nodejs_24;
   };
