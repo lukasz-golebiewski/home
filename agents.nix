@@ -69,20 +69,4 @@ in
     ANTIGRAVITY_CLI_SYSTEM_SETTINGS_PATH = "${config.home.homeDirectory}/.gemini/system-settings.json";
   };
 
-  home.file.".claude/plugins/known_marketplaces.json".force = true;
-  home.file.".claude/plugins/known_marketplaces.json".text =
-    let home = config.home.homeDirectory; in
-    builtins.toJSON {
-      "claude-plugins-official" = {
-        source = { source = "github"; repo = "anthropics/claude-plugins-official"; };
-        installLocation = "${home}/.claude/plugins/marketplaces/claude-plugins-official";
-        lastUpdated = "2026-05-02T16:16:07.748Z";
-      };
-      cellar = {
-        source = { source = "github"; repo = "VirtusLab/cellar"; };
-        installLocation = "${home}/.claude/plugins/marketplaces/cellar";
-        lastUpdated = "2026-05-07T00:00:00.000Z";
-      };
-    };
-
 }
