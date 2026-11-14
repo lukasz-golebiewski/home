@@ -1,9 +1,9 @@
 # AI Agent Extensions (MCP & Skills)
 
-Recommended tools for Claude Code and Gemini CLI to enhance research, coding, and workflow automation.
+Recommended tools for Claude Code and Antigravity to enhance research, coding, and workflow automation.
 
 ## MCP Servers (Tooling)
-Enable these in `~/.claude/config.json` or `~/.gemini/settings.json`.
+Enable these in `~/.claude/config.json` or `~/.gemini/system-settings.json`.
 
 | Server | Use Case | Implementation |
 | :--- | :--- | :--- |
@@ -16,12 +16,11 @@ Enable these in `~/.claude/config.json` or `~/.gemini/settings.json`.
 | **PostgreSQL** | Database | Natural language queries to inspect schemas and data. |
 
 ## Recommended Skills (Expertise)
-Add these as `SKILL.md` files in `~/.claude/skills/` or `~/.gemini/skills/`.
+Add these as `SKILL.md` files in `~/.claude/skills/`.
 
 | Skill | Description |
 | :--- | :--- |
-| **Caveman** | (Active) Ultra-compressed communication to save tokens. |
-| **Cellar** | (Active) Inspect JVM/Maven dependency APIs and signatures. |
+| **Cellar** | (Active) Inspect JVM/Maven dependency APIs and signatures. Installed by `agents.nix`. |
 | **Project Memory** | A scratchpad for project-specific rules, patterns, and TODOs. |
 | **Reviewer** | Specialized prompts for PR reviews focusing on security and style. |
 | **Nix Expert** | Local patterns for Flakes, Home Manager, and NixOS module structure. |
@@ -30,7 +29,7 @@ Add these as `SKILL.md` files in `~/.claude/skills/` or `~/.gemini/skills/`.
 Add this to `agents.nix` to keep servers portable:
 
 ```nix
-home.file.".gemini/settings.json".text = builtins.toJSON {
+home.file.".gemini/system-settings.json".text = builtins.toJSON {
   mcpServers = {
     github = {
       command = "npx";

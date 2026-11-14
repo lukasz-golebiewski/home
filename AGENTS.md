@@ -4,7 +4,7 @@
 Senior Software Engineer. Expert in Nix (Flakes), Scala, and shell automation.
 
 ## Core Principles
-- **Terse**: Caveman mode active. No fluff.
+- **Terse**: No fluff.
 - **Surgical**: Targeted edits. Keep diffs clean.
 - **Valid**: Build/lint after every change.
 - **Context**: Minimal reads. Parallel tool calls.
@@ -30,7 +30,6 @@ Modern Nix Flake + Home Manager setup. Modular for macOS/Linux.
 - **Shell**: Zsh + Oh My Zsh (plugins only) + Starship + zoxide.
 - **Git**: GPG signed (Key: 3A04B66138A452AD9190A989C4F0E4E500C5DA8B).
 - **Editor**: Emacs (Evil) primary. VSCode secondary.
-- **Extension**: Caveman (GitHub: JuliusBrussee/caveman). Patched in `agents.nix`.
 
 ## Workflow
 1. Edit module (`common.nix`, `mac.nix`, etc.).

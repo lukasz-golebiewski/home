@@ -1,23 +1,12 @@
 { pkgs, pkgs-unstable, lib, config, ... }:
 
 let
-  cavemanSrc = pkgs.runCommand "caveman-fixed" { } ''
-    cp -r ${pkgs.fetchFromGitHub {
-      owner = "JuliusBrussee";
-      repo = "caveman";
-      rev = "63a91ecadbf4c4719a4602a5abb00883f9966034";
-      sha256 = "sha256-Jlfas2MPoQx3pOw+yKCta8kYlOEY27SP5NXJtSL+GGI=";
-    }} $out
-    chmod -R +w $out
-    sed -i '/^---$/d' $out/commands/caveman-init.toml
-  '';
-
-  cellarVersion = "0.1.0-M7";
+  cellarVersion = "0.1.0-M14";
   cellarPlatforms = {
-    "x86_64-linux" = { archive = "cellar-${cellarVersion}-linux-x86_64.tar.gz"; hash = "sha256-iQaZxMeE7Iu5vhaOFtOOZ5MCRBrE0O/DjtZUT6L6NpQ="; };
-    "aarch64-linux" = { archive = "cellar-${cellarVersion}-linux-aarch64.tar.gz"; hash = "sha256-XabTzGAnQOdxIW9GxkCmi/CMT/KQE9ZEV67HAMqGmmc="; };
-    "x86_64-darwin" = { archive = "cellar-${cellarVersion}-macos-x86_64.tar.gz"; hash = "sha256-QmJJQHAVP/mlF7Er09lYbrN4YfKwXnznvwnOmIxhVbE="; };
-    "aarch64-darwin" = { archive = "cellar-${cellarVersion}-macos-arm64.tar.gz"; hash = "sha256-nsVVyD28xubN5KoGKZgInWdXWaIM3zo7X+nR25t5AUE="; };
+    "x86_64-linux" = { archive = "cellar-${cellarVersion}-linux-x86_64.tar.gz"; hash = "sha256-8w2ngwKo7h+TVwuynx6TVAmXJlcjJ/x97e4dxDr8sSw="; };
+    "aarch64-linux" = { archive = "cellar-${cellarVersion}-linux-aarch64.tar.gz"; hash = "sha256-UPO/4D+ojEwOL5swSdUEdPgxu/hEIIxfcVCHTKQT9+8="; };
+    "x86_64-darwin" = { archive = "cellar-${cellarVersion}-macos-x86_64.tar.gz"; hash = "sha256-WJ3F9nhHwza4bEaCjxlpwXdN9fAwcVeNXNltWaM6TUY="; };
+    "aarch64-darwin" = { archive = "cellar-${cellarVersion}-macos-arm64.tar.gz"; hash = "sha256-eHYaLzqRflStzL/03BgZZ9KbCz25LHBkmezSDaadTnM="; };
   };
   cellarMeta = cellarPlatforms.${pkgs.stdenv.hostPlatform.system};
   cellarBin = pkgs.stdenv.mkDerivation {
@@ -41,15 +30,31 @@ let
     '';
   };
 
+  # Same commit as the v0.1.0-M14 tag, so the skill matches the binary.
   cellarSkill = pkgs.fetchurl {
-    url = "https://raw.githubusercontent.com/VirtusLab/cellar/a16116ef0db7e85649a48ca08626e257e3032d2b/skills/cellar/SKILL.md";
-    sha256 = "0sgrfl3jl8d8i0x8kw94q5njlzvj663kvz02qslxdbwc188ivsgc";
+    url = "https://raw.githubusercontent.com/VirtusLab/cellar/69540b26e0b06388573a9f36feb408126657dfe2/skills/cellar/SKILL.md";
+    sha256 = "sha256-TmyRtJ3JNA0fAzryzz+/AdGYdE0wXBRONjNZvntRr0c=";
   };
 
-  mcp-server-memory = pkgs.writeShellScriptBin "mcp-server-memory" ''
-    # Version pin only; npx still fetches from the registry at runtime.
-    exec ${pkgs.nodejs}/bin/npx -y @modelcontextprotocol/server-memory@2026.1.26 "$@"
+  mcpMemoryVersion = "2.1.1";
+  mcpMemoryTarball = pkgs.fetchurl {
+    url = "https://registry.npmjs.org/@modelcontextprotocol/server-memory/-/server-memory-${mcpMemoryVersion}.tgz";
+    hash = "sha512-MbjK6Pi+uGU3EwGk9HyCp/1zKwnuB/QMQ/wQOlswaLgHzIeeCuyVdWUTWg0hTGBk+n+3l5la5a4egbt8YuoVAg==";
+  };
+  mcpMemorySrc = pkgs.runCommand "mcp-server-memory-src" { } ''
+    mkdir "$out"
+    tar -xzf ${mcpMemoryTarball} -C "$out" --strip-components=1
+    cp ${./agents/mcp-server-memory/package.json} "$out/package.json"
+    cp ${./agents/mcp-server-memory/package-lock.json} "$out/package-lock.json"
   '';
+  mcp-server-memory = pkgs.buildNpmPackage {
+    pname = "mcp-server-memory";
+    version = mcpMemoryVersion;
+    src = mcpMemorySrc;
+    npmDepsHash = "sha256-xA3NIaUhxMNmGXo7iCVSJui79483Pkpj498+AEpnHuQ=";
+    dontNpmBuild = true;
+    nodejs = pkgs.nodejs_24;
+  };
 in
 
 {
@@ -57,18 +62,10 @@ in
     antigravity-cli
     claude-code
     claude-monitor
-    codex
-    ollama
     cellarBin
     mcp-server-memory
   ];
 
-  home.file.".gemini/extensions/caveman" = {
-    source = cavemanSrc;
-    recursive = true;
-  };
-
-  home.file.".gemini/skills/cellar/SKILL.md".source = cellarSkill;
   home.file.".claude/skills/cellar/SKILL.md".source = cellarSkill;
 
   home.file.".gemini/system-settings.json".text = builtins.toJSON {
@@ -85,26 +82,5 @@ in
   home.sessionVariables = {
     ANTIGRAVITY_CLI_SYSTEM_SETTINGS_PATH = "${config.home.homeDirectory}/.gemini/system-settings.json";
   };
-
-  home.file.".claude/plugins/known_marketplaces.json".force = true;
-  home.file.".claude/plugins/known_marketplaces.json".text =
-    let home = config.home.homeDirectory; in
-    builtins.toJSON {
-      "claude-plugins-official" = {
-        source = { source = "github"; repo = "anthropics/claude-plugins-official"; };
-        installLocation = "${home}/.claude/plugins/marketplaces/claude-plugins-official";
-        lastUpdated = "2026-05-02T16:16:07.748Z";
-      };
-      caveman = {
-        source = { source = "github"; repo = "JuliusBrussee/caveman"; };
-        installLocation = "${home}/.claude/plugins/marketplaces/caveman";
-        lastUpdated = "2026-04-28T08:09:57.974Z";
-      };
-      cellar = {
-        source = { source = "github"; repo = "VirtusLab/cellar"; };
-        installLocation = "${home}/.claude/plugins/marketplaces/cellar";
-        lastUpdated = "2026-05-07T00:00:00.000Z";
-      };
-    };
 
 }

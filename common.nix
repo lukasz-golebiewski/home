@@ -53,6 +53,7 @@ in
     nixpkgs-fmt
     nodejs_24
     typescript-language-server
+    ollama
     openvpn
     pass
     plantuml
