@@ -64,4 +64,4 @@ nix build --print-build-logs .#checks.$(nix eval --impure --raw --expr builtins.
 ```
 
 ## AI Agents
-This repo contains `GEMINI.md`, `CLAUDE.md`, `GROK.md`, and `AGENTS.md` to provide context for AI coding assistants.
+This repo contains `CLAUDE.md`, `GROK.md`, and `AGENTS.md` to provide context for AI coding assistants.

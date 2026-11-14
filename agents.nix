@@ -46,13 +46,11 @@ in
     antigravity-cli
     claude-code
     claude-monitor
-    codex
     ollama
     cellarBin
     mcp-server-memory
   ];
 
-  home.file.".gemini/skills/cellar/SKILL.md".source = cellarSkill;
   home.file.".claude/skills/cellar/SKILL.md".source = cellarSkill;
 
   home.file.".gemini/system-settings.json".text = builtins.toJSON {
