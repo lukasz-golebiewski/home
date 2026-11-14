@@ -36,10 +36,25 @@ let
     sha256 = "1y7m19rvjs1akabx4qwqfpg3f6x2f5z3d5aaq5qdaf66r937sm49";
   };
 
-  mcp-server-memory = pkgs.writeShellScriptBin "mcp-server-memory" ''
-    # Version pin only; npx still fetches from the registry at runtime.
-    exec ${pkgs.nodejs}/bin/npx -y @modelcontextprotocol/server-memory@2026.1.26 "$@"
+  mcpMemoryVersion = "2026.1.26";
+  mcpMemoryTarball = pkgs.fetchurl {
+    url = "https://registry.npmjs.org/@modelcontextprotocol/server-memory/-/server-memory-${mcpMemoryVersion}.tgz";
+    hash = "sha512-7F0hbaEB4lVqkYhNWmrC5jJjEWPCofgXd7OIk3h97HyvJL6aTAhlUNYaH8lCDxAzlK9sr2pLCkZEYI+m4HSOiA==";
+  };
+  mcpMemorySrc = pkgs.runCommand "mcp-server-memory-src" { } ''
+    mkdir "$out"
+    tar -xzf ${mcpMemoryTarball} -C "$out" --strip-components=1
+    cp ${./agents/mcp-server-memory/package.json} "$out/package.json"
+    cp ${./agents/mcp-server-memory/package-lock.json} "$out/package-lock.json"
   '';
+  mcp-server-memory = pkgs.buildNpmPackage {
+    pname = "mcp-server-memory";
+    version = mcpMemoryVersion;
+    src = mcpMemorySrc;
+    npmDepsHash = "sha256-oJ+8lDh2hfmhHjAawv2l9pdm/BM60otPpMNjAVNJ52w=";
+    dontNpmBuild = true;
+    nodejs = pkgs.nodejs_24;
+  };
 in
 
 {
